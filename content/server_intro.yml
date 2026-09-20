@@ -1,0 +1,106 @@
+posts:
+  - 
+    title: >
+      ①エックスサーバーのサーバーパネルを開く
+    tag: １学期前半
+    body: |
+      ファイルマネージャを開くことでもサイトの編集はできるが、VScodeで編集した方が簡単なので準備をしていく。
+      
+      ※サーバー名は簡単に変えられないので、変えたい場合は今がチャンス。
+  - 
+    title: ②秘密鍵をダウンロード
+    tag: １学期前半
+    body: |
+      SSH設定で公開鍵を登録→秘密鍵をダウンロード
+      秘密鍵はユーザーフォルダ直下に「.ssh」という名前のフォルダを作ってそこに入れるのがオススメ
+  - 
+    title: ③VS codeをインストールする
+    tag: １学期前半
+    body: |
+      ![③VS codeをインストールする](../images/img_69fb5effba51a0.32732809.png)
+      
+      　
+  - 
+    title: >
+      ④プロジェクトフォルダを作る
+    tag: １学期前半
+    body: |
+      フォルダ名は「network-system」にしておいてください。
+      このフォルダ内で作業していきます。
+  - 
+    title: ⑤拡張機能を追加する
+    tag: １学期前半
+    body: |
+      - Japanese Language Pack
+      - SFTP　※Natizyskunkの方
+  - 
+    title: ⑥SFTPの設定を書く
+    tag: １学期前半
+    body: |
+      ![⑥SFTPの設定を書く](../images/img_6a13c6f56193c0.16604834.png)
+      
+      VScode上で
+      表示→コマンドパレット→SFTP:config
+      を選択すると「sftp.json」が作成される。
+      
+      画像の感じで書き換えよう。ホスト名、サーバーID、秘密鍵のパスは自分のやつで。
+      
+      ※portの書き換えを忘れないように。
+      ※uploadOnSaveをtrueにしてください。セーブするたびアップロードする設定です。
+      ※タイピングミスに注意！privateKeyPathのKは大文字です。
+  - 
+    title: ⑦サーバーと同期する
+    tag: １学期前半
+    body: |
+      ![⑦サーバーと同期する](../images/img_69fb67a4e779b8.34525437.png)
+      
+      画像の場所にある My Server をクリックすると、（上手くいけば）エックスサーバーと同期される。
+  - 
+    title: >
+      ⑧初めに表示されるページを作る
+    tag: １学期前半
+    body: |
+      ![⑧初めに表示されるページを作る](../images/img_6a0aa54b6469a5.94611918.png)
+      
+      「index.html」を画像の感じで書く。文章は好きに変えよう。
+  - 
+    title: >
+      【目標①】ブラウザで確認する
+    tag: １学期前半
+    body: '- URL（サーバーID.xsrv.jp）を入力してアクセスし、PCとスマホの両方で表示できることを確かめよう。'
+  - 
+    title: >
+      【目標②】ページを外部スタイルシート
+      pico css で整える
+    tag: １学期前半
+    body: |
+      ![【目標②】ページを外部スタイルシート pico css で整える](../images/img_6a0173ef8a8e27.47059834.png)
+      
+      - 「index.html」を画像のように書き換え、 pico css を使って楽に見た目を整えていこう。
+      
+      headに追加する３行は以下をコピペしよう。
+      &lt;meta charset=&quot;UTF-8&quot;&gt;
+      &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
+      &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css&quot;&gt;
+      
+      ※この段階ではさっきと変わらないが、スマホやダークテーマで開いてみると……？
+  - 
+    title: ＋α　クローラー対策をする
+    tag: １学期前半
+    body: |
+      ![＋α　クローラー対策をする](../images/img_6a0aa3af463036.55216305.png)
+      
+      robots.txt ファイルを作成し、画像のように記述する。
+      こうするとネット上の情報を収集するプログラム（クローラー）にサイトを覗かれないようになり、検索結果に載らなくなる等の効果がある。
+      いわば魔除け。
+      
+      User-agent: *  ← すべてのクローラーに対して
+      Disallow: /       ← すべてのファイルの閲覧を許可しない
+  - 
+    title: ＋α　SSLを設定する
+    tag: １学期前半
+    body: |
+      ![＋α　SSLを設定する](../images/img_6a0a9d44d312e7.92729271.png)
+      
+      エックスサーバーの サーバーパネル &gt; ドメイン &gt; SSL設定 から、無料独自SSLをONにする。
+      こうすると、「保護されていない通信」という警告が出なくなる。

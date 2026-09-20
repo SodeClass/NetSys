@@ -1,0 +1,70 @@
+media:
+  input: content/images
+  output: images
+content:
+  - name: server_intro
+    label: "①レンタルサーバ導入編"
+    type: file
+    path: content/server_intro.yml
+    fields:
+      - name: posts
+        label: "記事一覧"
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{title}"
+        fields:
+          - name: title
+            label: "タイトル"
+            type: string
+            required: true
+          - name: tag
+            label: "タグ"
+            type: select
+            options:
+              values:
+                - "１学期前半"
+            default: "１学期前半"
+          - name: code_title
+            label: "コードファイル名 (任意)"
+            type: string
+          - name: body
+            label: "本文"
+            type: rich-text
+
+  - name: personal_site
+    label: "②個人サイト制作編"
+    type: file
+    path: content/personal_site.yml
+    fields:
+      - name: posts
+        label: "記事一覧"
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{title}"
+        fields:
+          - name: title
+            label: "タイトル"
+            type: string
+            required: true
+          - name: tag
+            label: "タグ"
+            type: select
+            options:
+              values:
+                - "１学期後半"
+                - "１学期後半, 秘密のページ"
+            default: "１学期後半"
+          - name: code_title
+            label: "コードファイル名 (任意)"
+            type: string
+          - name: body
+            label: "本文"
+            type: rich-text
+
+
+
+

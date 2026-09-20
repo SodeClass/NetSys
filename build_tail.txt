@@ -1,0 +1,16 @@
+unset($posts);
+
+$view_logs = false; // 静的サイトなので無効
+
+
+    ob_start();
+    require 'template.php';
+    $html = ob_get_clean();
+    
+    // docsへのリンクを補正（index.php や post.php などが残っていれば外す、等）
+    
+    $filename = ($target_tag === $default_tag) ? 'index.html' : $target_tag . '.html';
+    file_put_contents($docs_dir . '/' . $filename, $html);
+}
+
+echo "Build completed.\n";

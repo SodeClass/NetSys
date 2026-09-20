@@ -1,0 +1,51 @@
+    <script>
+    // SPA風のタグ切り替えロジック
+    document.addEventListener('DOMContentLoaded', function() {
+        const tagLinks = document.querySelectorAll('.tag-link');
+        const articles = document.querySelectorAll('.post-article');
+
+        tagLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const selectedTag = this.getAttribute('data-tag');
+
+                // アクティブなタグのスタイリングを更新
+                tagLinks.forEach(l => {
+                    l.classList.remove('active-tag');
+                    l.style.fontWeight = 'normal';
+                    l.style.pointerEvents = 'auto';
+                    l.style.color = '';
+                });
+                this.classList.add('active-tag');
+                this.style.fontWeight = 'bold';
+                this.style.pointerEvents = 'none';
+                this.style.color = 'var(--pico-color)';
+
+                // 記事の表示/非表示を切り替え
+                let visibleCount = 0;
+                articles.forEach(article => {
+                    const tagsStr = article.getAttribute('data-tags');
+                    if (tagsStr) {
+                        try {
+                            const tags = JSON.parse(tagsStr);
+                            if (tags.includes(selectedTag)) {
+                                article.style.display = '';
+                                visibleCount++;
+                            } else {
+                                article.style.display = 'none';
+                            }
+                        } catch(err) {
+                            console.error('JSON parse error', err);
+                        }
+                    }
+                });
+
+                // 記事が0件の場合のメッセージ制御
+                const emptyMsg = document.getElementById('empty-message');
+                if (emptyMsg) {
+                    emptyMsg.style.display = visibleCount === 0 ? 'block' : 'none';
+                }
+            });
+        });
+    });
+    </script>
