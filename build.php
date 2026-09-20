@@ -86,7 +86,8 @@ if (!empty($data)) {
             // 残りをHTMLに変換
             $post['body'] = $parsedown->text($body_md);
             
-            $tags = array_map('trim', explode(',', $post['tag']));
+            $tags = is_array($post['tag']) ? $post['tag'] : explode(',', $post['tag']);
+            $tags = array_map('trim', $tags);
             foreach ($tags as $t) {
                 if ($t !== '') {
                     $all_tags_set[$t] = true;
