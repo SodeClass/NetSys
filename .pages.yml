@@ -36,9 +36,19 @@ content:
           - name: code_title
             label: "コードファイル名"
             type: string
+          - name: code_lang
+            label: "コードの言語"
+            type: select
+            options:
+              values:
+                - "html"
+                - "php"
+            default: "html"
           - name: code
             label: "コード"
             type: code
+            options:
+              language: html
 
   - name: personal_site
     label: "②個人サイト制作編"
@@ -75,9 +85,19 @@ content:
           - name: code_title
             label: "コードファイル名"
             type: string
+          - name: code_lang
+            label: "コードの言語"
+            type: select
+            options:
+              values:
+                - "html"
+                - "php"
+            default: "html"
           - name: code
             label: "コード"
             type: code
+            options:
+              language: html
 
   - name: top_links
     label: "トップページリンク集"
@@ -100,5 +120,7 @@ content:
             label: "URL"
             type: string
             required: true
+
+
 
 
