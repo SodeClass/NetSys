@@ -1,0 +1,46 @@
+<!-- ネットワーク共有ダイアログ -->
+<div class="share-dialog-overlay" id="share-dialog-overlay" style="display: none;">
+    <div class="share-dialog" id="share-dialog">
+        <!-- ダイアログヘッダー -->
+        <div class="dialog-header share-dialog-header">
+            <div class="share-dialog-header-title">
+                <span class="share-dialog-icon">🔗</span>
+                <span>ネットワーク構成の共有</span>
+            </div>
+            <button class="share-dialog-close-btn" id="share-dialog-close-x-btn" title="閉じる">&times;</button>
+        </div>
+
+        <!-- ダイアログ本文 -->
+        <div class="dialog-content share-dialog-content">
+            <p class="share-dialog-intro">
+                現在のネットワーク構成を含む共有用URLを生成しました。<br>
+                このURLを開くことで、誰でも同じネットワーク構成を再現できます。
+            </p>
+
+            <div class="share-url-group">
+                <label for="share-url-input" class="share-url-label">共有用URL:</label>
+                <div class="share-url-input-container">
+                    <input type="text" id="share-url-input" class="share-url-input" readonly placeholder="生成中...">
+                    <button type="button" class="share-copy-btn" id="share-copy-btn" title="URLをクリップボードにコピー">
+                        📋 コピー
+                    </button>
+                </div>
+                <div class="share-copy-message" id="share-copy-message" style="display: none;">
+                    ✅ クリップボードにコピーしました！
+                </div>
+            </div>
+
+            <div class="share-dialog-info">
+                <div class="share-info-item">
+                    <span class="share-info-icon">💡</span>
+                    <span>URLには現在のすべての機器配置、IPアドレス設定、ルーティング・DNS等の構成が含まれます。</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- フッター -->
+        <div class="share-dialog-footer">
+            <button type="button" class="dialog-button secondary" id="share-dialog-close-btn">閉じる</button>
+        </div>
+    </div>
+</div>

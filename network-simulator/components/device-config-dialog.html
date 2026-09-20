@@ -1,0 +1,472 @@
+<!-- デバイス設定ダイアログ -->
+<div class="dialog-overlay" id="dialog-overlay"></div>
+<div class="device-config-dialog" id="device-config-dialog">
+    <div class="dialog-header">
+        <span id="dialog-title">デバイス設定</span>
+    </div>
+    <div class="dialog-content">
+        <div class="form-group">
+            <label class="form-label" for="device-name">デバイス名</label>
+            <input type="text" class="form-input" id="device-name" placeholder="PC-1">
+        </div>
+
+        <!-- PC、サーバー、DNS等の基本ネットワーク設定（ルーター・スイッチでは非表示） -->
+        <div id="basic-network-config">
+            <div class="form-group">
+                <label class="form-label" for="device-mac-address">MACアドレス</label>
+                <input type="text" class="form-input readonly-field" id="device-mac-address" readonly style="background-color: #f1f5f9; color: #475569; font-family: monospace;">
+            </div>
+            <div class="form-group">
+                <label class="form-label" for="ip-address">IPアドレス</label>
+                <input type="text" class="form-input" id="ip-address" placeholder="192.168.1.1">
+            </div>
+            <div class="form-group">
+                <label class="form-label" for="subnet-mask">サブネットマスク</label>
+                <input type="text" class="form-input" id="subnet-mask" placeholder="255.255.255.0">
+            </div>
+            <div class="form-group">
+                <label class="form-label" for="default-gateway">デフォルトゲートウェイ</label>
+                <input type="text" class="form-input" id="default-gateway" placeholder="192.168.1.1">
+            </div>
+            
+            <!-- ARPテーブル表示 -->
+            <div class="form-group" style="margin-top: 12px;">
+                <label class="form-label" style="display: flex; justify-content: space-between; align-items: center;">
+                    <span>ARPテーブル (IP ↔ MAC)</span>
+                    <button type="button" id="clear-arp-btn" class="dialog-button secondary" style="font-size: 11px; padding: 2px 8px; height: auto;">クリア</button>
+                </label>
+                <div id="arp-table-container" class="table-container">
+                    <table class="config-table">
+                        <thead>
+                            <tr>
+                                <th>IPアドレス</th>
+                                <th>MACアドレス</th>
+                            </tr>
+                        </thead>
+                        <tbody id="arp-table-body">
+                            <tr><td colspan="2" style="text-align: center; color: #94a3b8; font-style: italic;">エントリなし</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- スイッチ専用設定・MACアドレステーブル -->
+        <div id="switch-config-section" style="display: none;">
+            <hr style="margin: 16px 0; border: none; border-top: 1px solid #ddd;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                <h4 style="margin: 0; color: #333;">L2スイッチ情報</h4>
+                <span style="font-size: 11px; background: #e0f2fe; color: #0284c7; padding: 2px 6px; border-radius: 4px;">レイヤ2 (MAC中継)</span>
+            </div>
+            <p style="margin-bottom: 12px; color: #64748b; font-size: 12px;">
+                スイッチはIPアドレスではなく、受信したフレームの送信元MACアドレスを学習し、宛先MACアドレスをもとに該当ポートへ転送します。
+            </p>
+
+            <!-- スイッチ ポート状態 -->
+            <div class="form-group">
+                <label class="form-label">ポート接続状態</label>
+                <div class="table-container">
+                    <table class="config-table">
+                        <thead>
+                            <tr>
+                                <th style="width: 50px;">ポート</th>
+                                <th style="width: 60px;">状態</th>
+                                <th>接続先デバイス</th>
+                            </tr>
+                        </thead>
+                        <tbody id="switch-ports-body">
+                            <!-- JSで動的生成 -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- MACアドレステーブル -->
+            <div class="form-group" style="margin-top: 16px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                    <label class="form-label" style="margin: 0;">MACアドレステーブル</label>
+                    <button type="button" id="clear-mac-table-btn" class="dialog-button secondary" style="font-size: 11px; padding: 2px 8px; height: auto;">テーブルクリア</button>
+                </div>
+                <div class="table-container">
+                    <table class="config-table">
+                        <thead>
+                            <tr>
+                                <th style="width: 50px;">ポート</th>
+                                <th>MACアドレス</th>
+                                <th>デバイス</th>
+                            </tr>
+                        </thead>
+                        <tbody id="switch-mac-table-body">
+                            <tr><td colspan="3" style="text-align: center; color: #94a3b8; font-style: italic;">学習済みエントリなし</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        
+        <!-- ルーター専用のWAN設定 -->
+        <div id="wan-config-section" style="display: none;">
+            <hr style="margin: 16px 0; border: none; border-top: 1px solid #ddd;">
+            <h4 style="margin-bottom: 16px; color: #333;">WAN設定</h4>
+            
+            <div class="form-group">
+                <label class="form-label" for="wan-mac-address">WAN MACアドレス</label>
+                <input type="text" class="form-input readonly-field" id="wan-mac-address" readonly style="background-color: #f1f5f9; color: #475569; font-family: monospace;">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">
+                    <input type="checkbox" id="wan-dhcp-enabled" style="margin-right: 8px;">
+                    WANでDHCPを有効にする（インターネットからIP自動取得）
+                </label>
+            </div>
+            
+            <div id="wan-manual-config" style="display: block;">
+                <div class="form-group">
+                    <label class="form-label" for="wan-ip-address">WAN IPアドレス</label>
+                    <input type="text" class="form-input" id="wan-ip-address" placeholder="203.0.113.10">
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="wan-subnet-mask">WANサブネットマスク</label>
+                    <input type="text" class="form-input" id="wan-subnet-mask" placeholder="255.255.255.0">
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="wan-default-gateway">WANデフォルトゲートウェイ</label>
+                    <input type="text" class="form-input" id="wan-default-gateway" placeholder="203.0.113.1">
+                </div>
+            </div>
+        </div>
+
+        <!-- ルーター専用のNAT (NAPT/IPマスカレード) 設定 & 変換テーブル -->
+        <div id="nat-config-section" style="display: none;">
+            <hr style="margin: 16px 0; border: none; border-top: 1px solid #ddd;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                <h4 style="margin: 0; color: #333;">NAT / NAPT (IPマスカレード) 設定</h4>
+                <span style="font-size: 11px; background: #ecfdf5; color: #059669; padding: 2px 6px; border-radius: 4px; font-weight: bold;">レイヤ3/4 (アドレス・ポート変換)</span>
+            </div>
+            <p style="margin-bottom: 12px; color: #64748b; font-size: 12px;">
+                LAN内のプライベートIPアドレスをルーターのWANグローバルIPアドレス（ポート番号で識別）に変換し、インターネット通信を可能にします。
+            </p>
+            
+            <div class="form-group">
+                <label class="form-label" style="display: flex; align-items: center; cursor: pointer;">
+                    <input type="checkbox" id="nat-enabled" style="margin-right: 8px;">
+                    NAT / NAPT (IPマスカレード) 機能を有効にする
+                </label>
+            </div>
+
+            <!-- NAT変換テーブル -->
+            <div class="form-group" style="margin-top: 14px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                    <label class="form-label" style="margin: 0;">NAT変換テーブル (NAPT Table)</label>
+                    <button type="button" id="clear-nat-table-btn" class="dialog-button secondary" style="font-size: 11px; padding: 2px 8px; height: auto;">テーブルクリア</button>
+                </div>
+                <div class="table-container" style="max-height: 200px; overflow-y: auto;">
+                    <table class="config-table" style="font-size: 12px;">
+                        <thead>
+                            <tr>
+                                <th style="width: 50px;">プロトコル</th>
+                                <th>内部ローカル (Private)</th>
+                                <th>内部グローバル (WAN)</th>
+                                <th>宛先アドレス (Destination)</th>
+                                <th style="width: 70px;">状態</th>
+                            </tr>
+                        </thead>
+                        <tbody id="nat-table-body">
+                            <tr><td colspan="5" style="text-align: center; color: #94a3b8; font-style: italic;">変換エントリなし</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- ルーター専用のDHCPサーバー設定 -->
+        <div id="dhcp-server-section" style="display: none;">
+            <hr style="margin: 16px 0; border: none; border-top: 1px solid #ddd;">
+            <h4 style="margin-bottom: 16px; color: #333;">DHCPサーバー設定</h4>
+            
+            <!-- LAN1 設定 -->
+            <div class="lan-section">
+                <div class="lan-section-header">LAN1 (メインネットワーク)</div>
+                <div class="lan-section-content">
+                    <div class="form-group">
+                        <label class="form-label" for="lan1-mac-address">LAN1 MACアドレス</label>
+                        <input type="text" class="form-input readonly-field" id="lan1-mac-address" readonly style="background-color: #f1f5f9; color: #475569; font-family: monospace;">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="lan1-ip">LAN1 IPアドレス</label>
+                        <input type="text" class="form-input" id="lan1-ip" placeholder="192.168.1.1">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="lan1-subnet-mask">LAN1 サブネットマスク</label>
+                        <input type="text" class="form-input" id="lan1-subnet-mask" placeholder="255.255.255.0">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="lan1-default-gateway">LAN1 デフォルトゲートウェイ</label>
+                        <input type="text" class="form-input" id="lan1-default-gateway" placeholder="192.168.1.1">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">
+                            <input type="checkbox" id="lan1-dhcp-enabled" style="margin-right: 8px;">
+                            LAN1でDHCPサーバーを有効にする
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="lan1-pool-start">IPプール開始アドレス</label>
+                        <input type="text" class="form-input" id="lan1-pool-start" placeholder="192.168.1.100">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="lan1-pool-end">IPプール終了アドレス</label>
+                        <input type="text" class="form-input" id="lan1-pool-end" placeholder="192.168.1.199">
+                    </div>
+                </div>
+            </div>
+            
+            <!-- LAN2 設定 -->
+            <div class="lan-section">
+                <div class="lan-section-header">LAN2 (セカンダリネットワーク)</div>
+                <div class="lan-section-content">
+                    <div class="form-group">
+                        <label class="form-label" for="lan2-mac-address">LAN2 MACアドレス</label>
+                        <input type="text" class="form-input readonly-field" id="lan2-mac-address" readonly style="background-color: #f1f5f9; color: #475569; font-family: monospace;">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="lan2-ip">LAN2 IPアドレス</label>
+                        <input type="text" class="form-input" id="lan2-ip" placeholder="192.168.2.1">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="lan2-subnet-mask">LAN2 サブネットマスク</label>
+                        <input type="text" class="form-input" id="lan2-subnet-mask" placeholder="255.255.255.0">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="lan2-default-gateway">LAN2 デフォルトゲートウェイ</label>
+                        <input type="text" class="form-input" id="lan2-default-gateway" placeholder="192.168.2.1">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">
+                            <input type="checkbox" id="lan2-dhcp-enabled" style="margin-right: 8px;">
+                            LAN2でDHCPサーバーを有効にする
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="lan2-pool-start">IPプール開始アドレス</label>
+                        <input type="text" class="form-input" id="lan2-pool-start" placeholder="192.168.2.100">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="lan2-pool-end">IPプール終了アドレス</label>
+                        <input type="text" class="form-input" id="lan2-pool-end" placeholder="192.168.2.199">
+                    </div>
+                </div>
+            </div>
+            
+            <!-- LAN3 設定 -->
+            <div class="lan-section">
+                <div class="lan-section-header">LAN3 (ゲストネットワーク)</div>
+                <div class="lan-section-content">
+                    <div class="form-group">
+                        <label class="form-label" for="lan3-mac-address">LAN3 MACアドレス</label>
+                        <input type="text" class="form-input readonly-field" id="lan3-mac-address" readonly style="background-color: #f1f5f9; color: #475569; font-family: monospace;">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="lan3-ip">LAN3 IPアドレス</label>
+                        <input type="text" class="form-input" id="lan3-ip" placeholder="192.168.3.1">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="lan3-subnet-mask">LAN3 サブネットマスク</label>
+                        <input type="text" class="form-input" id="lan3-subnet-mask" placeholder="255.255.255.0">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="lan3-default-gateway">LAN3 デフォルトゲートウェイ</label>
+                        <input type="text" class="form-input" id="lan3-default-gateway" placeholder="192.168.3.1">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">
+                            <input type="checkbox" id="lan3-dhcp-enabled" style="margin-right: 8px;">
+                            LAN3でDHCPサーバーを有効にする
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="lan3-pool-start">IPプール開始アドレス</label>
+                        <input type="text" class="form-input" id="lan3-pool-start" placeholder="192.168.3.100">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="lan3-pool-end">IPプール終了アドレス</label>
+                        <input type="text" class="form-input" id="lan3-pool-end" placeholder="192.168.3.199">
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 共通設定 -->
+            <div class="form-group">
+                <label class="form-label" for="dhcp-lease-time">リース時間（秒）</label>
+                <input type="number" class="form-input" id="dhcp-lease-time" placeholder="3600" value="3600">
+            </div>
+        </div>
+
+        <!-- DNS サーバー専用の設定 -->
+        <div id="dns-server-section" style="display: none;">
+            <hr style="margin: 16px 0; border: none; border-top: 1px solid #ddd;">
+            <h4 style="margin-bottom: 16px; color: #333;">DNSテーブル設定</h4>
+            <div class="form-group">
+                <label class="form-label">DNS レコード</label>
+                <div id="dns-records" style="margin-top: 8px;">
+                    <!-- DNS レコードが動的に挿入される -->
+                </div>
+                <button type="button" id="add-dns-record" class="dialog-button secondary" style="margin-top: 8px; font-size: 12px; padding: 6px 12px;">
+                    + DNSレコードを追加
+                </button>
+            </div>
+        </div>
+
+        <!-- インターネット専用のISP DHCP設定 -->
+        <div id="internet-isp-section" style="display: none;">
+            <hr style="margin: 16px 0; border: none; border-top: 1px solid #ddd;">
+            <h4 style="margin-bottom: 16px; color: #333;">ISP DHCPサーバー設定</h4>
+            <p style="margin-bottom: 16px; color: #666; font-size: 14px;">
+                このインターネットデバイスは6つのISPを提供し、すべて同一セグメント（203.0.113.0/24）のグローバルIPアドレスを配布します。
+            </p>
+
+            <!-- ISP1 設定 -->
+            <div class="isp-section">
+                <div class="isp-section-header">ISP1</div>
+                <div class="isp-section-content">
+                    <div class="form-group">
+                        <label class="form-label">
+                            <input type="checkbox" id="isp1-dhcp-enabled" style="margin-right: 8px;">
+                            ISP1 DHCPサーバーを有効にする
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="isp1-pool-start">IPプール開始アドレス</label>
+                        <input type="text" class="form-input" id="isp1-pool-start" placeholder="203.0.113.10">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="isp1-pool-end">IPプール終了アドレス</label>
+                        <input type="text" class="form-input" id="isp1-pool-end" placeholder="203.0.113.50">
+                    </div>
+                </div>
+            </div>
+
+            <!-- ISP2 設定 -->
+            <div class="isp-section">
+                <div class="isp-section-header">ISP2</div>
+                <div class="isp-section-content">
+                    <div class="form-group">
+                        <label class="form-label">
+                            <input type="checkbox" id="isp2-dhcp-enabled" style="margin-right: 8px;">
+                            ISP2 DHCPサーバーを有効にする
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="isp2-pool-start">IPプール開始アドレス</label>
+                        <input type="text" class="form-input" id="isp2-pool-start" placeholder="203.0.113.51">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="isp2-pool-end">IPプール終了アドレス</label>
+                        <input type="text" class="form-input" id="isp2-pool-end" placeholder="203.0.113.90">
+                    </div>
+                </div>
+            </div>
+
+            <!-- ISP3 設定 -->
+            <div class="isp-section">
+                <div class="isp-section-header">ISP3</div>
+                <div class="isp-section-content">
+                    <div class="form-group">
+                        <label class="form-label">
+                            <input type="checkbox" id="isp3-dhcp-enabled" style="margin-right: 8px;">
+                            ISP3 DHCPサーバーを有効にする
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="isp3-pool-start">IPプール開始アドレス</label>
+                        <input type="text" class="form-input" id="isp3-pool-start" placeholder="203.0.113.91">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="isp3-pool-end">IPプール終了アドレス</label>
+                        <input type="text" class="form-input" id="isp3-pool-end" placeholder="203.0.113.130">
+                    </div>
+                </div>
+            </div>
+
+            <!-- ISP4 設定 -->
+            <div class="isp-section">
+                <div class="isp-section-header">ISP4</div>
+                <div class="isp-section-content">
+                    <div class="form-group">
+                        <label class="form-label">
+                            <input type="checkbox" id="isp4-dhcp-enabled" style="margin-right: 8px;">
+                            ISP4 DHCPサーバーを有効にする
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="isp4-pool-start">IPプール開始アドレス</label>
+                        <input type="text" class="form-input" id="isp4-pool-start" placeholder="203.0.113.131">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="isp4-pool-end">IPプール終了アドレス</label>
+                        <input type="text" class="form-input" id="isp4-pool-end" placeholder="203.0.113.170">
+                    </div>
+                </div>
+            </div>
+
+            <!-- ISP5 設定 -->
+            <div class="isp-section">
+                <div class="isp-section-header">ISP5</div>
+                <div class="isp-section-content">
+                    <div class="form-group">
+                        <label class="form-label">
+                            <input type="checkbox" id="isp5-dhcp-enabled" style="margin-right: 8px;">
+                            ISP5 DHCPサーバーを有効にする
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="isp5-pool-start">IPプール開始アドレス</label>
+                        <input type="text" class="form-input" id="isp5-pool-start" placeholder="203.0.113.171">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="isp5-pool-end">IPプール終了アドレス</label>
+                        <input type="text" class="form-input" id="isp5-pool-end" placeholder="203.0.113.210">
+                    </div>
+                </div>
+            </div>
+
+            <!-- ISP6 設定 -->
+            <div class="isp-section">
+                <div class="isp-section-header">ISP6</div>
+                <div class="isp-section-content">
+                    <div class="form-group">
+                        <label class="form-label">
+                            <input type="checkbox" id="isp6-dhcp-enabled" style="margin-right: 8px;">
+                            ISP6 DHCPサーバーを有効にする
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="isp6-pool-start">IPプール開始アドレス</label>
+                        <input type="text" class="form-input" id="isp6-pool-start" placeholder="203.0.113.211">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="isp6-pool-end">IPプール終了アドレス</label>
+                        <input type="text" class="form-input" id="isp6-pool-end" placeholder="203.0.113.250">
+                    </div>
+                </div>
+            </div>
+
+            <!-- 共通設定 -->
+            <div class="form-group" style="margin-top: 20px; padding-top: 16px; border-top: 1px solid #eee;">
+                <label class="form-label" for="isp-lease-time">DHCPリース時間（秒）</label>
+                <input type="number" class="form-input" id="isp-lease-time" placeholder="3600" value="3600">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">共通ゲートウェイ: 203.0.113.1</label>
+                <label class="form-label">サブネットマスク: 255.255.255.0</label>
+            </div>
+        </div>
+
+        <div class="dialog-buttons">
+            <button class="dialog-button secondary" id="cancel-btn">キャンセル</button>
+            <button class="dialog-button primary" id="save-btn">保存</button>
+        </div>
+    </div>
+</div>

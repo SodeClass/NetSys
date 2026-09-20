@@ -1,0 +1,368 @@
+/* ネットワークシミュレータ - モバイル対応スタイル */
+
+/* コントロールパネル */
+.control-panel {
+    position: fixed;
+    bottom: calc(env(safe-area-inset-bottom, 0px));
+    left: env(safe-area-inset-left, 0px);
+    right: env(safe-area-inset-right, 0px);
+    height: 60px;
+    background: white;
+    border-top: 1px solid #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 0 8px;
+    padding: 8px;
+    z-index: 1000;
+}
+
+.control-button {
+    background: #2196f3;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 12px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    flex: 1;
+    margin: 0 4px;
+    max-width: 100px;
+}
+
+.control-button:hover {
+    background: #1976d2;
+}
+
+.control-button:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+}
+
+.animation-speed-control {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+    min-width: 140px;
+}
+
+.tcp-visibility-control {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+    min-width: 100px;
+}
+
+.tcp-label {
+    font-size: 12px;
+    color: #333;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.tcp-label input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+}
+
+.log-visibility-control {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+    min-width: 100px;
+}
+
+.log-label {
+    font-size: 12px;
+    color: #333;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.log-label input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+}
+
+.speed-label {
+    font-size: 12px;
+    color: #333;
+    white-space: nowrap;
+}
+
+.speed-slider {
+    width: 80px;
+    height: 20px;
+    background: #ddd;
+    border-radius: 10px;
+    outline: none;
+    -webkit-appearance: none;
+}
+
+.speed-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    background: #2196f3;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.speed-slider::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    background: #2196f3;
+    border-radius: 50%;
+    cursor: pointer;
+    border: none;
+}
+
+.speed-value {
+    font-size: 11px;
+    color: #666;
+    min-width: 20px;
+    text-align: center;
+}
+
+/* モバイル向け横スクロール強化（より広い範囲で対応） */
+@media (max-width: 1024px) {
+    /* デバイスパレットの横スクロール改善 */
+    .device-palette {
+        height: 110px !important;
+        padding: 8px !important;
+        padding-left: max(8px, env(safe-area-inset-left, 8px)) !important;
+        padding-right: max(8px, env(safe-area-inset-right, 8px)) !important;
+        /* JavaScriptイベントを無効化して純粋なCSSスクロールを実現 */
+        pointer-events: auto !important;
+        /* 親要素の幅を画面幅に制限してスクロールを有効化 */
+        width: 100vw !important;
+        max-width: 100vw !important;
+        overflow-x: auto !important;
+        overflow-y: hidden !important;
+    }
+    
+    .palette-content {
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: flex-start !important;
+        gap: 8px !important;
+        padding: 4px 8px 4px 8px !important;
+        overflow-x: auto !important;
+        overflow-y: hidden !important;
+        /* width: 100% を削除してJavaScript設定を有効化 */
+        height: 100% !important;
+        flex-wrap: nowrap !important;
+        
+        /* より敏感な横スクロールを実現 */
+        touch-action: pan-x !important;
+        -webkit-overflow-scrolling: touch !important;
+        overscroll-behavior-x: contain !important;
+        overscroll-behavior-y: none !important;
+        
+        /* スクロールバー非表示（モバイル専用） */
+        scrollbar-width: none !important;
+        -ms-overflow-style: none !important;
+        
+        /* 強制的にスクロール可能にする - 子要素に合わせて幅を設定 */
+        width: max-content !important;
+        min-width: calc(7 * 88px + 6 * 8px + 16px) !important; /* 7個のアイテム(88px) + 6個のgap(8px) + パディング(16px) = 664px */
+    }
+    
+    .palette-content::-webkit-scrollbar {
+        display: none !important;
+        width: 0 !important;
+        height: 0 !important;
+    }
+    
+    /* デバイスアイテムのポインタイベントを制限 */
+    .device-item {
+        flex-shrink: 0 !important;
+        width: 80px !important;
+        height: 86px !important;
+        min-height: 86px !important;
+        margin-right: 4px !important;
+        font-size: 0.8rem !important;
+        padding: 6px 4px !important;
+        box-sizing: border-box !important;
+        
+        /* より敏感なタッチ操作を可能にする */
+        touch-action: manipulation !important;
+        pointer-events: auto !important;
+    }
+    
+    .device-icon {
+        font-size: 24px !important;
+        margin-bottom: 4px !important;
+        pointer-events: none !important;
+    }
+    
+    .device-name {
+        font-size: 10px !important;
+        line-height: 1.1 !important;
+        text-align: center !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+        white-space: nowrap !important;
+        pointer-events: none !important;
+    }
+}
+
+/* タブレット向け横スクロール対応 */
+@media (max-width: 1024px) and (hover: none) {
+    .device-palette {
+        -webkit-overflow-scrolling: touch !important;
+    }
+    
+    .palette-content {
+        touch-action: pan-x !important;
+        -webkit-overflow-scrolling: touch !important;
+    }
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+    .control-panel {
+        height: auto;
+        min-height: 60px;
+        padding: 8px;
+    }
+    
+    .animation-speed-control {
+        min-width: 120px;
+    }
+    
+    .tcp-visibility-control {
+        min-width: 90px;
+    }
+    
+    .log-visibility-control {
+        min-width: 90px;
+    }
+    
+    .speed-slider {
+        width: 60px;
+    }
+    
+    .control-button {
+        font-size: 12px;
+        padding: 8px 12px;
+    }
+    
+    /* タブレット・中サイズ画面でのパネル調整 */
+    .http-status-panel {
+        top: 300px; /* デスクトップより少し上に */
+        max-height: 180px;
+    }
+}
+
+@media (max-width: 480px) {
+    .control-panel {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-template-rows: auto auto auto auto;
+        gap: 6px 4px;
+        padding: 6px 4px;
+        max-height: 140px;
+        align-items: center;
+    }
+    
+    /* ボタン共通スタイル */
+    .control-button {
+        font-size: 9px;
+        padding: 4px 5px;
+    }
+    
+    /* 1段目 - 基本機能ボタン */
+    #clear-btn { grid-column: 1; grid-row: 1; }
+    #ping-btn { grid-column: 2; grid-row: 1; }
+    #http-btn { grid-column: 3; grid-row: 1; }
+    #dhcp-btn { grid-column: 4; grid-row: 1; }
+    #config-btn { grid-column: 1; grid-row: 2; }
+    
+    /* 2段目 - ファイル操作ボタン */
+    #save-network-btn { grid-column: 2; grid-row: 2; }
+    #load-network-btn { grid-column: 3; grid-row: 2; }
+    #share-network-btn { grid-column: 4; grid-row: 2; }
+    #export-network-btn { grid-column: 1; grid-row: 3; }
+    
+    /* チェックボックス行（3段目） - 2つのチェックボックスを中央に */
+    .tcp-visibility-control {
+        grid-row: 3;
+        grid-column: 2;
+        justify-self: end;
+        font-size: 10px;
+    }
+    
+    .log-visibility-control {
+        grid-row: 3;
+        grid-column: 3;
+        justify-self: start;
+        font-size: 10px;
+    }
+    
+    /* スライダー行（4段目） - 全幅で中央配置 */
+    .animation-speed-control {
+        grid-row: 4;
+        grid-column: 1 / -1;
+        justify-self: center;
+        width: 100%;
+        max-width: 200px;
+    }
+    
+    /* ラベルのフォントサイズ調整 */
+    .tcp-label,
+    .log-label,
+    .speed-label {
+        font-size: 10px;
+    }
+    
+    /* スライダー調整 - タッチ操作しやすく */
+    .speed-slider {
+        width: 140px;
+        height: 20px; /* ボタンと同じ程度の高さに調整 */
+        margin: 0 8px;
+    }
+    
+    .speed-value {
+        font-size: 9px;
+    }
+    
+    /* モバイル環境でのステータスパネル調整 */
+    .status-panel {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        right: 10px;
+        max-width: none;
+        font-size: 11px;
+    }
+    
+    .tcp-status-panel {
+        top: 60px;
+        left: 10px;
+        right: 10px;
+        max-width: none;
+    }
+    
+    .http-status-panel {
+        top: 280px;
+        left: 10px;
+        right: 10px;
+        max-width: none;
+        max-height: 180px; /* モバイルでは少し低めに設定 */
+    }
+}

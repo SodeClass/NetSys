@@ -1,0 +1,437 @@
+/* ネットワークシミュレータ - ダイアログスタイル */
+
+/* オーバーレイ */
+.dialog-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 1999;
+    display: none;
+}
+
+/* デバイス設定ダイアログ */
+.device-config-dialog {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    z-index: 2000;
+    width: 90%;
+    max-width: 400px;
+    display: none;
+}
+
+.dialog-header {
+    background: #2196f3;
+    color: white;
+    padding: 16px;
+    border-radius: 12px 12px 0 0;
+    font-weight: bold;
+    text-align: center;
+}
+
+.dialog-content {
+    padding: 20px;
+    max-height: 70vh;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+}
+
+.dialog-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.dialog-content::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+.dialog-content::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 4px;
+}
+
+.dialog-content::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}
+
+.lan-section {
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    margin: 16px 0;
+    overflow: hidden;
+}
+
+.lan-section-header {
+    background: #f5f5f5;
+    padding: 12px 16px;
+    font-weight: bold;
+    color: #333;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.lan-section-content {
+    padding: 16px;
+}
+
+/* ISP設定セクション */
+.isp-section {
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    margin: 16px 0;
+    overflow: hidden;
+}
+
+.isp-section-header {
+    background: #f5f5f5;
+    padding: 12px 16px;
+    font-weight: bold;
+    color: #333;
+    border-bottom: 1px solid #e0e0e0;
+    display: flex;
+    align-items: center;
+}
+
+.isp-section-header:before {
+    content: '🌐';
+    margin-right: 8px;
+}
+
+.isp-section-content {
+    padding: 16px;
+    background: #fafafa;
+}
+
+.form-group {
+    margin-bottom: 16px;
+}
+
+.form-label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 4px;
+    color: #333;
+}
+
+.form-input {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.dialog-buttons {
+    display: flex;
+    gap: 8px;
+    margin-top: 20px;
+}
+
+.dialog-button {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.dialog-button.primary {
+    background: #2196f3;
+    color: white;
+}
+
+.dialog-button.secondary {
+    background: #e0e0e0;
+    color: #333;
+}
+
+.dialog-button:hover {
+    opacity: 0.8;
+}
+
+/* テーブル関連スタイル (ARPテーブル, MACアドレステーブル用) */
+.table-container {
+    max-height: 160px;
+    overflow-y: auto;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    background: #fff;
+}
+
+.config-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+}
+
+.config-table th {
+    background: #f8fafc;
+    color: #475569;
+    font-weight: 600;
+    padding: 6px 8px;
+    text-align: left;
+    border-bottom: 1px solid #e2e8f0;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+.config-table td {
+    padding: 6px 8px;
+    border-bottom: 1px solid #f1f5f9;
+    color: #334155;
+    font-family: monospace;
+}
+
+.config-table tr:last-child td {
+    border-bottom: none;
+}
+
+.config-table tr:hover td {
+    background: #f8fafc;
+}
+
+.status-badge {
+    display: inline-block;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 600;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.status-badge.connected {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.status-badge.disconnected {
+    background: #f1f5f9;
+    color: #94a3b8;
+}
+
+/* ==========================================================================
+   共有ダイアログ用スタイル
+   ========================================================================== */
+
+.share-dialog-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(15, 23, 42, 0.6);
+    backdrop-filter: blur(4px);
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+}
+
+.share-dialog {
+    position: relative;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+    width: 100%;
+    max-width: 600px;
+    max-height: 88vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    animation: share-modal-fade-in 0.2s ease-out;
+}
+
+@keyframes share-modal-fade-in {
+    from {
+        opacity: 0;
+        transform: scale(0.96) translateY(8px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+.share-dialog-header {
+    background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+    color: white;
+    padding: 16px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 16px 16px 0 0;
+}
+
+.share-dialog-header-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.15rem;
+    font-weight: 700;
+}
+
+.share-dialog-icon {
+    font-size: 1.3rem;
+}
+
+.share-dialog-close-btn {
+    background: rgba(255, 255, 255, 0.15);
+    border: none;
+    color: white;
+    font-size: 24px;
+    line-height: 1;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+}
+
+.share-dialog-close-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: rotate(90deg);
+}
+
+.share-dialog-content {
+    padding: 24px;
+    overflow-y: auto;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.share-dialog-intro {
+    margin: 0;
+    color: #475569;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.share-url-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.share-url-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #334155;
+}
+
+.share-url-input-container {
+    display: flex;
+    gap: 8px;
+}
+
+.share-url-input {
+    flex: 1;
+    padding: 10px 14px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 13px;
+    font-family: monospace;
+    background: #f8fafc;
+    color: #1e293b;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.share-url-input:focus {
+    border-color: #0284c7;
+    box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15);
+    background: #ffffff;
+}
+
+.share-copy-btn {
+    background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 18px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.2s;
+}
+
+.share-copy-btn:hover {
+    background: linear-gradient(135deg, #0369a1 0%, #075985 100%);
+    box-shadow: 0 2px 6px rgba(2, 132, 199, 0.35);
+}
+
+.share-copy-btn:active {
+    transform: scale(0.97);
+}
+
+.share-copy-message {
+    font-size: 13px;
+    color: #059669;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.share-dialog-info {
+    background: #f0fdf4;
+    border: 1px solid #bbf7d0;
+    border-radius: 8px;
+    padding: 12px 16px;
+}
+
+.share-info-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 12.5px;
+    color: #166534;
+    line-height: 1.5;
+}
+
+.share-info-icon {
+    font-size: 15px;
+    flex-shrink: 0;
+}
+
+.share-dialog-footer {
+    background: #f8fafc;
+    border-top: 1px solid #e2e8f0;
+    padding: 14px 24px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    border-radius: 0 0 16px 16px;
+}
+
+@media (max-width: 640px) {
+    .share-url-input-container {
+        flex-direction: column;
+    }
+    .share-copy-btn {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+
+
+

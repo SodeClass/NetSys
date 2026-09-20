@@ -1,0 +1,30 @@
+<!-- コントロールパネル -->
+<div class="control-panel">
+    <button class="control-button" id="clear-btn">クリア</button>
+    <button class="control-button" id="ping-btn" disabled>Ping</button>
+    <button class="control-button" id="http-btn" disabled>HTTP</button>
+    <button class="control-button" id="dhcp-btn" disabled>🔄 DHCP</button>
+    <button class="control-button" id="config-btn" disabled>設定</button>
+    <button class="control-button" id="save-network-btn">💾 保存</button>
+    <button class="control-button" id="load-network-btn">📁 読込</button>
+    <button class="control-button" id="share-network-btn" title="ネットワーク構成の共有用URLを生成します">🔗 共有</button>
+    <button class="control-button" id="export-network-btn">📷 画像</button>
+    <div class="tcp-visibility-control">
+        <label for="tcp-visibility-checkbox" class="tcp-label">
+            <input type="checkbox" id="tcp-visibility-checkbox">
+            📡 TCP詳細
+        </label>
+    </div>
+    <div class="log-visibility-control">
+        <label for="log-visibility-checkbox" class="log-label">
+            <input type="checkbox" id="log-visibility-checkbox">
+            📊 ログ表示
+        </label>
+    </div>
+    <div class="animation-speed-control">
+        <label for="animation-speed-slider" class="speed-label">⚡ 速度</label>
+        <input type="range" id="animation-speed-slider" class="speed-slider" 
+               min="0.25" max="3" step="0.25" value="1">
+        <span class="speed-value" id="speed-value">1×</span>
+    </div>
+</div>

@@ -1,0 +1,184 @@
+<!-- 宛先選択ダイアログ -->
+<div class="destination-dialog-overlay" id="destination-dialog-overlay" style="display: none;">
+    <div class="destination-dialog" id="destination-dialog">
+        <div class="dialog-header">
+            <span id="destination-dialog-title">通信先を選択</span>
+        </div>
+        <div class="dialog-content">
+        <div class="form-group">
+            <label class="form-label">送信元</label>
+            <div id="source-device-info" style="padding: 8px; background: #f0f9ff; border-radius: 4px; margin-bottom: 12px;">
+                <strong id="source-device-name">PC-1</strong>
+                <span id="source-device-ip" style="color: #666; margin-left: 8px;">(192.168.1.100)</span>
+            </div>
+        </div>
+
+        <!-- ノード選択ヒント & クイック選択 -->
+        <div class="form-group" id="quick-target-section" style="margin-bottom: 14px;">
+            <label class="form-label" style="display: flex; justify-content: space-between; align-items: center;">
+                <span>🎯 宛先ノードの選択</span>
+                <small style="color: #0284c7; font-weight: normal;">キャンバス上のノードをクリックしても選択できます</small>
+            </label>
+            <div id="quick-device-buttons" style="display: flex; flex-wrap: wrap; gap: 6px; max-height: 100px; overflow-y: auto; padding: 4px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px;">
+                <!-- 候補デバイスのボタンが動的に挿入される -->
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label class="form-label">宛先の指定方法</label>
+            <div style="display: flex; gap: 16px; margin-bottom: 12px;">
+                <label style="display: flex; align-items: center; cursor: pointer;">
+                    <input type="radio" name="destination-type" value="ip" checked style="margin-right: 8px;">
+                    IPアドレスで指定
+                </label>
+                <label style="display: flex; align-items: center; cursor: pointer;">
+                    <input type="radio" name="destination-type" value="hostname" style="margin-right: 8px;">
+                    ホスト名で指定
+                </label>
+            </div>
+        </div>
+
+        <!-- IPアドレス直接入力 -->
+        <div class="form-group" id="ip-address-section">
+            <label class="form-label" for="destination-ip">宛先IPアドレス</label>
+            <input type="text" class="form-input" id="destination-ip" placeholder="宛先IP（例: 192.168.1.10, 192.168.1.255, 255.255.255.255）">
+        </div>
+
+        <!-- ホスト名選択 -->
+        <div class="form-group" id="hostname-section" style="display: none;">
+            <label class="form-label" for="destination-hostname">宛先ホスト名</label>
+            <select class="form-input" id="destination-hostname">
+                <option value="">-- ホスト名を選択 --</option>
+                <!-- デバイス名が動的に挿入される -->
+            </select>
+            <div id="resolved-ip" style="margin-top: 8px; padding: 8px; background: #f8fafc; border-radius: 4px; display: none;">
+                <small style="color: #666;">解決されるIPアドレス: <strong id="resolved-ip-value"></strong></small>
+            </div>
+        </div>
+
+        <!-- DNS解決状況表示 -->
+        <div id="dns-resolution-status" style="margin-top: 16px; padding: 8px; border-radius: 4px; display: none;">
+            <small id="dns-status-text"></small>
+        </div>
+
+        <div class="dialog-buttons">
+            <button class="dialog-button secondary" id="destination-cancel-btn">キャンセル</button>
+            <button class="dialog-button primary" id="destination-ok-btn">実行</button>
+        </div>
+    </div>
+</div>
+
+<style>
+.destination-dialog-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.25);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.destination-dialog {
+    position: relative;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    z-index: 1002;
+    width: 440px;
+    max-width: 92vw;
+    margin: auto;
+}
+
+.destination-dialog .dialog-header {
+    background: #2196f3;
+    color: white;
+    padding: 14px 16px;
+    border-radius: 8px 8px 0 0;
+    font-weight: bold;
+}
+
+.destination-dialog .dialog-content {
+    padding: 18px 20px;
+}
+
+.destination-dialog .form-group {
+    margin-bottom: 14px;
+}
+
+.destination-dialog .form-label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 500;
+    color: #333;
+    font-size: 13px;
+}
+
+.destination-dialog .form-input {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+.destination-dialog .dialog-buttons {
+    display: flex;
+    gap: 8px;
+    justify-content: flex-end;
+    margin-top: 18px;
+}
+
+.destination-dialog .dialog-button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.destination-dialog .dialog-button.primary {
+    background: #2196f3;
+    color: white;
+}
+
+.destination-dialog .dialog-button.secondary {
+    background: #f5f5f5;
+    color: #666;
+}
+
+.destination-dialog .dialog-button:hover {
+    opacity: 0.9;
+}
+
+.quick-node-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 8px;
+    border: 1px solid #cbd5e1;
+    border-radius: 4px;
+    background: white;
+    color: #334155;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.quick-node-btn:hover {
+    background: #e0f2fe;
+    border-color: #38bdf8;
+    color: #0284c7;
+    transform: translateY(-1px);
+}
+
+.quick-node-btn.selected {
+    background: #0284c7;
+    border-color: #0284c7;
+    color: white;
+}
+</style>

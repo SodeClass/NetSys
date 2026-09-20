@@ -1,0 +1,521 @@
+{
+  "version": "1.0",
+  "timestamp": "2025-09-16T19:45:00.000Z",
+  "devices": [
+    {
+      "id": "router-1758051000000",
+      "type": "router",
+      "name": "ルーター-1",
+      "x": 400,
+      "y": 250,
+      "width": 80,
+      "height": 75,
+      "config": {
+        "ipAddress": "192.168.1.1",
+        "subnetMask": "255.255.255.0",
+        "defaultGateway": "192.168.1.1",
+        "dhcpEnabled": false,
+        "lan1": {
+          "ipAddress": "192.168.1.1",
+          "subnetMask": "255.255.255.0",
+          "defaultGateway": "192.168.1.1",
+          "dhcpEnabled": false,
+          "dhcpPoolStart": "192.168.1.100",
+          "dhcpPoolEnd": "192.168.1.199",
+          "dhcpAllocatedIPs": []
+        },
+        "lan2": {
+          "ipAddress": "192.168.2.1",
+          "subnetMask": "255.255.255.0",
+          "defaultGateway": "192.168.2.1",
+          "dhcpEnabled": false,
+          "dhcpPoolStart": "192.168.2.100",
+          "dhcpPoolEnd": "192.168.2.199",
+          "dhcpAllocatedIPs": []
+        },
+        "lan3": {
+          "ipAddress": "192.168.3.1",
+          "subnetMask": "255.255.255.0",
+          "defaultGateway": "192.168.3.1",
+          "dhcpEnabled": false,
+          "dhcpPoolStart": "192.168.3.100",
+          "dhcpPoolEnd": "192.168.3.199",
+          "dhcpAllocatedIPs": []
+        },
+        "dhcpLeaseTime": 3600,
+        "dhcpServerEnabled": true,
+        "dhcpPoolStart": "192.168.1.100",
+        "dhcpPoolEnd": "192.168.1.199",
+        "internetDevice": null,
+        "dhcp": {}
+      },
+      "wanConfig": {
+        "dhcpEnabled": false,
+        "ipAddress": "",
+        "subnetMask": "255.255.255.0",
+        "defaultGateway": "",
+        "dnsServers": [
+          "8.8.8.8",
+          "8.8.4.4"
+        ],
+        "isConnected": false,
+        "internetDevice": null
+      },
+      "dnsTable": {},
+      "ports": {
+        "nics": [
+          {
+            "id": "wan",
+            "x": 0,
+            "y": 0.3,
+            "connectedId": null
+          },
+          {
+            "id": "lan1",
+            "x": 0,
+            "y": 0.8,
+            "side": "left",
+            "connectedId": null
+          },
+          {
+            "id": "lan2",
+            "x": 1,
+            "y": 0.8,
+            "side": "right",
+            "connectedId": null
+          },
+          {
+            "id": "lan3",
+            "x": 1,
+            "y": 0.4,
+            "side": "right",
+            "connectedId": null
+          }
+        ]
+      }
+    },
+    {
+      "id": "switch-1758051000001",
+      "type": "switch",
+      "name": "スイッチ-1",
+      "x": 250,
+      "y": 350,
+      "width": 80,
+      "height": 70,
+      "config": {
+        "ipAddress": "192.168.1.10",
+        "subnetMask": "255.255.255.0",
+        "defaultGateway": "192.168.1.1",
+        "dhcpEnabled": false,
+        "lan1": {
+          "ipAddress": "192.168.1.10",
+          "dhcpEnabled": false,
+          "dhcpPoolStart": "192.168.1.100",
+          "dhcpPoolEnd": "192.168.1.199",
+          "dhcpAllocatedIPs": []
+        },
+        "lan2": {
+          "ipAddress": "192.168.2.1",
+          "dhcpEnabled": false,
+          "dhcpPoolStart": "192.168.1.100",
+          "dhcpPoolEnd": "192.168.1.199",
+          "dhcpAllocatedIPs": []
+        },
+        "lan3": {
+          "ipAddress": "192.168.3.1",
+          "dhcpEnabled": false,
+          "dhcpPoolStart": "192.168.1.100",
+          "dhcpPoolEnd": "192.168.1.199",
+          "dhcpAllocatedIPs": []
+        },
+        "dhcpLeaseTime": 3600,
+        "dhcpServerEnabled": false,
+        "dhcpPoolStart": "192.168.1.100",
+        "dhcpPoolEnd": "192.168.1.199",
+        "internetDevice": null,
+        "dhcp": {}
+      },
+      "dnsTable": {},
+      "ports": {
+        "nics": [
+          {
+            "id": "port1",
+            "x": 0,
+            "y": 0.15,
+            "connectedId": null
+          },
+          {
+            "id": "port2",
+            "x": 0,
+            "y": 0.35,
+            "connectedId": null
+          },
+          {
+            "id": "port3",
+            "x": 0,
+            "y": 0.55,
+            "connectedId": null
+          },
+          {
+            "id": "port4",
+            "x": 0,
+            "y": 0.75,
+            "connectedId": null
+          },
+          {
+            "id": "port5",
+            "x": 1,
+            "y": 0.15,
+            "connectedId": null
+          },
+          {
+            "id": "port6",
+            "x": 1,
+            "y": 0.35,
+            "connectedId": null
+          },
+          {
+            "id": "port7",
+            "x": 1,
+            "y": 0.55,
+            "connectedId": null
+          },
+          {
+            "id": "port8",
+            "x": 1,
+            "y": 0.75,
+            "connectedId": null
+          }
+        ]
+      }
+    },
+    {
+      "id": "switch-1758051000002",
+      "type": "switch",
+      "name": "スイッチ-2",
+      "x": 550,
+      "y": 350,
+      "width": 80,
+      "height": 70,
+      "config": {
+        "ipAddress": "192.168.2.10",
+        "subnetMask": "255.255.255.0",
+        "defaultGateway": "192.168.2.1",
+        "dhcpEnabled": false,
+        "lan1": {
+          "ipAddress": "192.168.2.10",
+          "dhcpEnabled": false,
+          "dhcpPoolStart": "192.168.1.100",
+          "dhcpPoolEnd": "192.168.1.199",
+          "dhcpAllocatedIPs": []
+        },
+        "lan2": {
+          "ipAddress": "192.168.2.1",
+          "dhcpEnabled": false,
+          "dhcpPoolStart": "192.168.1.100",
+          "dhcpPoolEnd": "192.168.1.199",
+          "dhcpAllocatedIPs": []
+        },
+        "lan3": {
+          "ipAddress": "192.168.3.1",
+          "dhcpEnabled": false,
+          "dhcpPoolStart": "192.168.1.100",
+          "dhcpPoolEnd": "192.168.1.199",
+          "dhcpAllocatedIPs": []
+        },
+        "dhcpLeaseTime": 3600,
+        "dhcpServerEnabled": false,
+        "dhcpPoolStart": "192.168.1.100",
+        "dhcpPoolEnd": "192.168.1.199",
+        "internetDevice": null,
+        "dhcp": {}
+      },
+      "dnsTable": {},
+      "ports": {
+        "nics": [
+          {
+            "id": "port1",
+            "x": 0,
+            "y": 0.15,
+            "connectedId": null
+          },
+          {
+            "id": "port2",
+            "x": 0,
+            "y": 0.35,
+            "connectedId": null
+          },
+          {
+            "id": "port3",
+            "x": 0,
+            "y": 0.55,
+            "connectedId": null
+          },
+          {
+            "id": "port4",
+            "x": 0,
+            "y": 0.75,
+            "connectedId": null
+          },
+          {
+            "id": "port5",
+            "x": 1,
+            "y": 0.15,
+            "connectedId": null
+          },
+          {
+            "id": "port6",
+            "x": 1,
+            "y": 0.35,
+            "connectedId": null
+          },
+          {
+            "id": "port7",
+            "x": 1,
+            "y": 0.55,
+            "connectedId": null
+          },
+          {
+            "id": "port8",
+            "x": 1,
+            "y": 0.75,
+            "connectedId": null
+          }
+        ]
+      }
+    },
+    {
+      "id": "pc-1758051000003",
+      "type": "pc",
+      "name": "PC-1",
+      "x": 150,
+      "y": 280,
+      "width": 80,
+      "height": 70,
+      "config": {
+        "ipAddress": "192.168.1.50",
+        "subnetMask": "255.255.255.0",
+        "defaultGateway": "192.168.1.1",
+        "dnsServers": [
+          "8.8.8.8",
+          "8.8.4.4"
+        ],
+        "dhcpEnabled": false,
+        "lan1": {
+          "ipAddress": "192.168.1.50",
+          "dhcpEnabled": false,
+          "dhcpPoolStart": "192.168.1.100",
+          "dhcpPoolEnd": "192.168.1.199",
+          "dhcpAllocatedIPs": []
+        },
+        "lan2": {
+          "ipAddress": "192.168.2.1",
+          "dhcpEnabled": false,
+          "dhcpPoolStart": "192.168.1.100",
+          "dhcpPoolEnd": "192.168.1.199",
+          "dhcpAllocatedIPs": []
+        },
+        "lan3": {
+          "ipAddress": "192.168.3.1",
+          "dhcpEnabled": false,
+          "dhcpPoolStart": "192.168.1.100",
+          "dhcpPoolEnd": "192.168.1.199",
+          "dhcpAllocatedIPs": []
+        },
+        "dhcpLeaseTime": 3600,
+        "dhcpServerEnabled": false,
+        "dhcpPoolStart": "192.168.1.100",
+        "dhcpPoolEnd": "192.168.1.199",
+        "internetDevice": null,
+        "dhcp": {}
+      },
+      "dnsTable": {},
+      "ports": {
+        "nics": [
+          {
+            "id": "eth",
+            "x": 1,
+            "y": 0.5,
+            "side": "right",
+            "connectedId": null
+          }
+        ]
+      }
+    },
+    {
+      "id": "pc-1758051000004",
+      "type": "pc",
+      "name": "PC-2",
+      "x": 150,
+      "y": 420,
+      "width": 80,
+      "height": 70,
+      "config": {
+        "ipAddress": "192.168.1.51",
+        "subnetMask": "255.255.255.0",
+        "defaultGateway": "192.168.1.1",
+        "dnsServers": [
+          "8.8.8.8",
+          "8.8.4.4"
+        ],
+        "dhcpEnabled": false,
+        "lan1": {
+          "ipAddress": "192.168.1.51",
+          "dhcpEnabled": false,
+          "dhcpPoolStart": "192.168.1.100",
+          "dhcpPoolEnd": "192.168.1.199",
+          "dhcpAllocatedIPs": []
+        },
+        "lan2": {
+          "ipAddress": "192.168.2.1",
+          "dhcpEnabled": false,
+          "dhcpPoolStart": "192.168.1.100",
+          "dhcpPoolEnd": "192.168.1.199",
+          "dhcpAllocatedIPs": []
+        },
+        "lan3": {
+          "ipAddress": "192.168.3.1",
+          "dhcpEnabled": false,
+          "dhcpPoolStart": "192.168.1.100",
+          "dhcpPoolEnd": "192.168.1.199",
+          "dhcpAllocatedIPs": []
+        },
+        "dhcpLeaseTime": 3600,
+        "dhcpServerEnabled": false,
+        "dhcpPoolStart": "192.168.1.100",
+        "dhcpPoolEnd": "192.168.1.199",
+        "internetDevice": null,
+        "dhcp": {}
+      },
+      "dnsTable": {},
+      "ports": {
+        "nics": [
+          {
+            "id": "eth",
+            "x": 1,
+            "y": 0.5,
+            "side": "right",
+            "connectedId": null
+          }
+        ]
+      }
+    },
+    {
+      "id": "pc-1758051000005",
+      "type": "pc",
+      "name": "PC-3",
+      "x": 650,
+      "y": 280,
+      "width": 80,
+      "height": 70,
+      "config": {
+        "ipAddress": "192.168.2.50",
+        "subnetMask": "255.255.255.0",
+        "defaultGateway": "192.168.2.1",
+        "dnsServers": [
+          "8.8.8.8",
+          "8.8.4.4"
+        ],
+        "dhcpEnabled": false,
+        "lan1": {
+          "ipAddress": "192.168.2.50",
+          "dhcpEnabled": false,
+          "dhcpPoolStart": "192.168.1.100",
+          "dhcpPoolEnd": "192.168.1.199",
+          "dhcpAllocatedIPs": []
+        },
+        "lan2": {
+          "ipAddress": "192.168.2.1",
+          "dhcpEnabled": false,
+          "dhcpPoolStart": "192.168.1.100",
+          "dhcpPoolEnd": "192.168.1.199",
+          "dhcpAllocatedIPs": []
+        },
+        "lan3": {
+          "ipAddress": "192.168.3.1",
+          "dhcpEnabled": false,
+          "dhcpPoolStart": "192.168.1.100",
+          "dhcpPoolEnd": "192.168.1.199",
+          "dhcpAllocatedIPs": []
+        },
+        "dhcpLeaseTime": 3600,
+        "dhcpServerEnabled": false,
+        "dhcpPoolStart": "192.168.1.100",
+        "dhcpPoolEnd": "192.168.1.199",
+        "internetDevice": null,
+        "dhcp": {}
+      },
+      "dnsTable": {},
+      "ports": {
+        "nics": [
+          {
+            "id": "eth",
+            "x": 0,
+            "y": 0.5,
+            "side": "left",
+            "connectedId": null
+          }
+        ]
+      }
+    },
+    {
+      "id": "pc-1758051000006",
+      "type": "pc",
+      "name": "PC-4",
+      "x": 650,
+      "y": 420,
+      "width": 80,
+      "height": 70,
+      "config": {
+        "ipAddress": "192.168.2.51",
+        "subnetMask": "255.255.255.0",
+        "defaultGateway": "192.168.2.1",
+        "dnsServers": [
+          "8.8.8.8",
+          "8.8.4.4"
+        ],
+        "dhcpEnabled": false,
+        "lan1": {
+          "ipAddress": "192.168.2.51",
+          "dhcpEnabled": false,
+          "dhcpPoolStart": "192.168.1.100",
+          "dhcpPoolEnd": "192.168.1.199",
+          "dhcpAllocatedIPs": []
+        },
+        "lan2": {
+          "ipAddress": "192.168.2.1",
+          "dhcpEnabled": false,
+          "dhcpPoolStart": "192.168.1.100",
+          "dhcpPoolEnd": "192.168.1.199",
+          "dhcpAllocatedIPs": []
+        },
+        "lan3": {
+          "ipAddress": "192.168.3.1",
+          "dhcpEnabled": false,
+          "dhcpPoolStart": "192.168.1.100",
+          "dhcpPoolEnd": "192.168.1.199",
+          "dhcpAllocatedIPs": []
+        },
+        "dhcpLeaseTime": 3600,
+        "dhcpServerEnabled": false,
+        "dhcpPoolStart": "192.168.1.100",
+        "dhcpPoolEnd": "192.168.1.199",
+        "internetDevice": null,
+        "dhcp": {}
+      },
+      "dnsTable": {},
+      "ports": {
+        "nics": [
+          {
+            "id": "eth",
+            "x": 0,
+            "y": 0.5,
+            "side": "left",
+            "connectedId": null
+          }
+        ]
+      }
+    }
+  ],
+  "connections": []
+}

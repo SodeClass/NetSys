@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0, minimum-scale=1.0, viewport-fit=cover, shrink-to-fit=no">
+    <title>ネットワーク構築シミュレータ</title>
+    <link rel="stylesheet" href="./styles/main.css">
+    <link rel="stylesheet" href="./styles/mobile.css">
+    <link rel="stylesheet" href="./styles/dialogs.css">
+    <style>
+        :root {
+            --primary-color: #3b82f6;
+            --primary-dark: #2563eb;
+            --surface: #f8fafc;
+            --surface-2: #f1f5f9;
+            --text-primary: #1e293b;
+            --text-secondary: #64748b;
+            --border: #e2e8f0;
+        }
+
+        .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4rem;
+            z-index: 1100;
+            display: flex;
+            align-items: center;
+            padding: 0 1rem;
+        }
+
+        .nav-container {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--primary-color);
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 1rem;
+            align-items: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-weight: 500;
+            font-size: 0.9rem;
+            padding: 0.4rem 0.8rem;
+            border-radius: 6px;
+            border: 1px solid var(--border);
+            background: white;
+            transition: all 0.2s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-color);
+            border-color: var(--primary-color);
+            background: var(--surface);
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="nav-brand">
+                <span class="brand-icon">🌐</span>
+                <span class="brand-text">ネットワーク構築シミュレータ</span>
+            </a>
+            <div class="nav-links">
+                <a href="/" class="nav-link">← トップに戻る</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="app-container">
+        <!-- 機器パレット -->
+        <div id="device-palette-container"></div>
+
+        <!-- メインキャンバス -->
+        <div class="main-canvas">
+            <div class="canvas-container">
+                <canvas id="network-canvas"></canvas>
+                <!-- ステータスパネル -->
+                <div id="status-panels-container"></div>
+            </div>
+        </div>
+
+        <!-- コントロールパネル -->
+        <div id="control-panel-container"></div>
+    </div>
+
+    <!-- デバイス設定ダイアログ -->
+    <div id="device-config-dialog-container"></div>
+
+    <!-- 宛先選択ダイアログ -->
+    <div id="destination-dialog-container"></div>
+
+    <!-- 共有ダイアログ -->
+    <div id="share-dialog-container"></div>
+
+    <!-- 隠しファイル入力 -->
+    <input type="file" id="file-input" accept=".json" style="display: none;">
+
+    <script>
+        async function loadComponent(containerSelector, componentPath) {
+            try {
+                const response = await fetch(componentPath);
+                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                const html = await response.text();
+                const container = document.querySelector(containerSelector);
+                if (container) {
+                    container.innerHTML = html;
+                }
+            } catch (error) {
+                console.error('コンポーネント読み込みエラー:', componentPath, error);
+            }
+        }
+
+        window.componentsLoaded = false;
+
+        document.addEventListener('DOMContentLoaded', async function() {
+            await Promise.all([
+                loadComponent('#device-palette-container', './components/device-palette.html'),
+                loadComponent('#status-panels-container', './components/status-panels.html'),
+                loadComponent('#control-panel-container', './components/control-panel.html'),
+                loadComponent('#device-config-dialog-container', './components/device-config-dialog.html'),
+                loadComponent('#destination-dialog-container', './components/destination-dialog.html'),
+                loadComponent('#share-dialog-container', './components/share-dialog.html')
+            ]);
+            window.componentsLoaded = true;
+            window.dispatchEvent(new Event('componentsLoaded'));
+        });
+    </script>
+
+    <script src="./scripts/utils/ip-input-helper.js"></script>
+    <script src="./scripts/network/tcp-simulator.js"></script>
+    <script src="./scripts/network/http-simulator.js"></script>
+    <script src="./scripts/network/route-calculator.js"></script>
+    <script src="./scripts/utils/animation-helper.js"></script>
+    <script src="./scripts/utils/tcp-integration.js"></script>
+    <script src="./scripts/core/network-simulator.js"></script>
+</body>
+</html>
