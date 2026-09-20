@@ -15,9 +15,11 @@ posts:
 
       その後、画像の様に記述。
       フォントは以下のリンクに載っているものが使える。
+
       [https://www.xserver.ne.jp/functions/service_webfont_shotai.php](https://www.xserver.ne.jp/functions/service_webfont_shotai.php)
 
       指定用の名前は以下のページの下部を参照。
+
       [https://www.xserver.ne.jp/manual/man_server_webfont_html.php](https://www.xserver.ne.jp/manual/man_server_webfont_html.php)
     code_title: index.html
     code_lang: html
@@ -172,6 +174,7 @@ posts:
               style="color: 自分のサイトの背景色;">
               隠し部屋
           </a>
+
 
 
 
