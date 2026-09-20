@@ -61,30 +61,37 @@ if (file_exists($links_file)) {
 
 if (!empty($data)) {
     foreach ($data as $index => $item) {
-        $post = [
-            'id' => uniqid(),
-
+            $post = [
+                'id' => uniqid(),
                 'title' => $item['title'] ?? '',
                 'tag' => $item['tag'] ?? 'その他',
                 'sort_order' => $index, // 配列のインデックス順 = 表示順
                 'created_at' => date('Y-m-d H:i:s'),
-                'image_path' => '',
+                'image_path' => $item['image'] ?? '',
                 'code_title' => $item['code_title'] ?? '',
                 'code_lang' => $item['code_lang'] ?? 'php', // デフォルトはphpにしておく
                 'code' => $item['code'] ?? '',
             ];
             
-            $body_md = $item['body'] ?? '';
+            $body_text = $item['body'] ?? '';
             
-            // Markdownから画像とコードブロックを抽出・分離する
-            // 1. 画像の抽出
-            if (preg_match('/!\[.*?\]\((.*?)\)/', $body_md, $img_match)) {
-                $post['image_path'] = str_replace('../images/', 'images/', $img_match[1]);
-                $body_md = preg_replace('/!\[.*?\]\(.*?\)/', '', $body_md, 1);
+            // 古いMarkdown画像の記述が本文に残っている場合は除去し、image_pathが未設定なら流用する
+            if (preg_match('/!\[.*?\]\((.*?)\)/', $body_text, $img_match)) {
+                if (empty($post['image_path'])) {
+                    $post['image_path'] = str_replace('../images/', 'images/', $img_match[1]);
+                }
             }
+            // 全てのMarkdown画像を本文から除去する
+            $body_text = preg_replace('/!\[.*?\]\(.*?\)/', '', $body_text);
             
-            // 残りをHTMLに変換
-            $post['body'] = $parsedown->text($body_md);
+            // 古いMarkdownのリンク [テキスト](URL) を URL のみに置換する
+            $body_text = preg_replace('/\[.*?\]\((.*?)\)/', '$1', $body_text);
+            
+            // Markdownとしてリッチテキスト化せず、プレーンテキストとしてHTML表示する
+            $body_text = htmlspecialchars(trim($body_text));
+            // URLが含まれる場合は自動リンク化
+            $body_text = preg_replace('/(https?:\/\/[^\s<]+)/', '<a href="$1" target="_blank" rel="noopener noreferrer">$1</a>', $body_text);
+            $post['body'] = nl2br($body_text);
             
             $tags = is_array($post['tag']) ? $post['tag'] : explode(',', $post['tag']);
             $tags = array_map('trim', $tags);
