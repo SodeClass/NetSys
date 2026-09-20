@@ -70,7 +70,8 @@ if (!empty($data)) {
                 'created_at' => date('Y-m-d H:i:s'),
                 'image_path' => '',
                 'code_title' => $item['code_title'] ?? '',
-                'code' => '',
+                'code_lang' => $item['code_lang'] ?? 'php', // デフォルトはphpにしておく
+                'code' => $item['code'] ?? '',
             ];
             
             $body_md = $item['body'] ?? '';
@@ -80,12 +81,6 @@ if (!empty($data)) {
             if (preg_match('/!\[.*?\]\((.*?)\)/', $body_md, $img_match)) {
                 $post['image_path'] = str_replace('../images/', 'images/', $img_match[1]);
                 $body_md = preg_replace('/!\[.*?\]\(.*?\)/', '', $body_md, 1);
-            }
-            
-            // 2. コードブロックの抽出
-            if (preg_match('/```.*?\n(.*?)\n```/s', $body_md, $code_match)) {
-                $post['code'] = $code_match[1];
-                $body_md = preg_replace('/```.*?\n.*?\n```/s', '', $body_md, 1);
             }
             
             // 残りをHTMLに変換

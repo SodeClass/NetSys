@@ -534,7 +534,7 @@
                                     <button class="copy-button" onclick="copyCode(this)">Copy</button>
                                 </div>
                                 <!-- Prism.js用に class="language-php" を指定 (自動判別も可能ですが汎用的にhtml/php系としています) -->
-                                <pre><code class="language-php"><?php echo htmlspecialchars($p['code'], ENT_QUOTES, 'UTF-8'); ?></code></pre>
+                                <pre><code class="language-<?php echo htmlspecialchars($p['code_lang'] ?? 'php', ENT_QUOTES, 'UTF-8'); ?>"><?php echo htmlspecialchars($p['code'], ENT_QUOTES, 'UTF-8'); ?></code></pre>
                             </div>
                         <?php endif; ?>
                     </article>
