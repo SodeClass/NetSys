@@ -68,3 +68,26 @@ content:
 
 
 
+
+  - name: top_links
+    label: "トップページリンク集"
+    type: file
+    path: content/links.yml
+    fields:
+      - name: links
+        label: "リンク一覧"
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{text}"
+        fields:
+          - name: text
+            label: "表示テキスト"
+            type: string
+            required: true
+          - name: url
+            label: "URL"
+            type: string
+            required: true
+

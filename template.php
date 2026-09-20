@@ -476,11 +476,15 @@
             <h1 class="profile-title"><a href="index.html" class="contrast" style="text-decoration: none;">ネットワークシステム実習資料</a></h1>
             <p class="profile-desc">レイアウトは随時変えます</p>
             <div style="font-size: 1rem; margin-top: 1rem;">
-                <a href="https://forms.gle/Dr79iPF759XPJdrU6" target="_blank" role="button" class="outline">☆１学期末考査☆</a>
-            </div>
-            <div style="font-size: 1rem; margin-top: 0.5rem;">
                 <a href="network-simulator/index.html" target="_blank" role="button" class="outline">ネットワークシミュレータ</a>
             </div>
+            <?php if (!empty($top_links)): ?>
+                <?php foreach ($top_links as $link): ?>
+                    <div style="font-size: 1rem; margin-top: 0.5rem;">
+                        <a href="<?php echo htmlspecialchars($link['url'], ENT_QUOTES, 'UTF-8'); ?>" target="_blank" role="button" class="outline"><?php echo htmlspecialchars($link['text'], ENT_QUOTES, 'UTF-8'); ?></a>
+                    </div>
+                <?php endforeach; ?>
+            <?php endif; ?>
         </header>
 
         <!-- タグ・ソート順の切り替えリンク -->

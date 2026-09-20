@@ -35,6 +35,7 @@ use Symfony\Component\Yaml\Yaml;
 // data.yml から読み込む
 $data_file_1 = $content_dir . '/server_intro.yml';
 $data_file_2 = $content_dir . '/personal_site.yml';
+$links_file = $content_dir . '/links.yml';
 
 $data = [];
 if (file_exists($data_file_1)) {
@@ -47,6 +48,14 @@ if (file_exists($data_file_2)) {
     $d2 = Yaml::parseFile($data_file_2);
     if (isset($d2['posts']) && is_array($d2['posts'])) {
         $data = array_merge($data, $d2['posts']);
+    }
+}
+
+$top_links = [];
+if (file_exists($links_file)) {
+    $d_links = Yaml::parseFile($links_file);
+    if (isset($d_links['links']) && is_array($d_links['links'])) {
+        $top_links = $d_links['links'];
     }
 }
 
