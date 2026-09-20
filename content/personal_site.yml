@@ -23,33 +23,44 @@ posts:
 
 
     code_lang: html
-    code: |
+    code: >
       <!DOCTYPE html>
+
       <html lang="ja" data-theme="light">
+
       <head>
+
       <meta charset="UTF-8">
+
       <meta name="viewport" content="width=device-width, initial-scale=1">
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
-      <script type="text/javascript" src="//webfonts.xserver.jp/js/xserver.js"></script>
+
+      <link rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+
+      <script type="text/javascript"
+      src="//webfonts.xserver.jp/js/xserver.js"></script>
+
       <title>タブに表示されるタイトル</title>
+
       <style>
+
       :root {
-      --pico-font-family: "Take Bold", sans-serif; /* pico.cssはフォントが決められているので、rootから指定 */
+
+      --pico-font-family: "Take Bold", sans-serif; /*
+      pico.cssはフォントが決められているので、rootから指定 */
+
       }
 
-      ```
 
+      ```
   - title: ③styleをlitlinkっぽく
     tag:
       - １学期後半
-    body: >+
+    body: |+
       画像のように書き換えよう
-
       色は自分の好きなように
 
-
       ※背景を画像にする場合はコメントアウトされた方を使おう
-
       ※pico.cssの仕様で最後が本文（p）だと下の余白が多くなるのを止めてます
 
 
@@ -133,13 +144,11 @@ posts:
       </style>
 
       ```
-
   - title: ④Bodyをlitlinkっぽく
     tag:
       - １学期後半
-    body: >+
+    body: |+
       Bodyに自身が過去に作った制作物を入れていく
-
       個人個人でいい感じに
 
 
@@ -203,7 +212,6 @@ posts:
       </html>
 
       ```
-
   - title: ⑤秘密のページを作る
     tag:
       - １学期後半
@@ -233,16 +241,13 @@ posts:
       </main>
       </body>
       ```
-
   - title: ⑥秘密のリンクを作る
     tag:
       - １学期後半
       - 秘密のページ
-    body: >+
+    body: |+
       index.htmlのmainの下に書き加える。
-
       パスワードは各自で決める。
-
       色はサイトの背景色と一致させよう。
 
 
@@ -271,7 +276,6 @@ posts:
       </html>
 
       ```
-
   - title: |
       【課題】相手の隠し部屋に不正アクセスしよう
     tag:
@@ -296,8 +300,6 @@ posts:
       <a href="secret.php" style="color: cornsilk;">
       隠し部屋
       </a>
-      ```
-
   - title: |
       ⑧セキュリティを強化する（secret編①）
     tag:
@@ -331,12 +333,13 @@ posts:
       　　 　　　　
 
       /* 以下元々あったsecretの内容 */ `` 
+    code_lang: html
   - title: |
       ⑩セキュリティを強化する（secret編③）
     tag:
       - １学期後半
       - 秘密のページ
-    body: >+
+    body: |+
       内に記述していく。
 
 
@@ -377,7 +380,6 @@ posts:
       </body>
 
       ```
-
   - title: |
       【目標】index.htmlとsecret.phpを自分専用に作ろう
     tag:
