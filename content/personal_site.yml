@@ -1,12 +1,12 @@
 posts:
   - title: ①litlink風にする
-    tag: １学期後半
+    tag: ["１学期後半"]
     body: |-
       ![①litlink風にする](../images/img_6a13e9fadec7a8.41845468.png)
 
       こんな感じで
   - title: ②フォントを変える
-    tag: １学期後半
+    tag: ["１学期後半"]
     code_title: index.html
     body: |+
       事前に、サーバーパネル → ホームページ → Webフォント設定 からWebフォント設定を追加する。
@@ -35,7 +35,7 @@ posts:
       ```
 
   - title: ③styleをlitlinkっぽく
-    tag: １学期後半
+    tag: ["１学期後半"]
     code_title: index.html
     body: >+
       画像のように書き換えよう
@@ -127,7 +127,7 @@ posts:
       ```
 
   - title: ④Bodyをlitlinkっぽく
-    tag: １学期後半
+    tag: ["１学期後半"]
     code_title: index.html
     body: >+
       Bodyに自身が過去に作った制作物を入れていく
@@ -194,7 +194,7 @@ posts:
       ```
 
   - title: ⑤秘密のページを作る
-    tag: １学期後半, 秘密のページ
+    tag: ["１学期後半", "秘密のページ"]
     code_title: secret.html
     body: |+
       新しくsecret.htmlファイルを作る。  
@@ -221,7 +221,7 @@ posts:
       ```
 
   - title: ⑥秘密のリンクを作る
-    tag: １学期後半, 秘密のページ
+    tag: ["１学期後半", "秘密のページ"]
     code_title: index.html
     body: >+
       index.htmlのmainの下に書き加える。
@@ -256,13 +256,13 @@ posts:
 
   - title: |
       【課題】相手の隠し部屋に不正アクセスしよう
-    tag: １学期後半, 秘密のページ
+    tag: ["１学期後半", "秘密のページ"]
     body: |-
       ⑤⑥で作成したパスワードロックはセキュリティが非常に低い！
       パスワードを直接聞かずに、セキュリティの穴を見つけて他の人の隠し部屋にアクセスしよう。
   - title: |
       ⑦セキュリティを強化する（index編）
-    tag: １学期後半, 秘密のページ
+    tag: ["１学期後半", "秘密のページ"]
     code_title: index.html
     body: |+
       まずはindex.htmlに張ったリンクのパスワードを外そう。
@@ -276,7 +276,7 @@ posts:
 
   - title: |
       ⑧セキュリティを強化する（secret編①）
-    tag: １学期後半, 秘密のページ
+    tag: ["１学期後半", "秘密のページ"]
     body: |-
       secret.htmlのファイル名をsecret.phpにする。
       htmlだとそのまま表示するだけだが、phpはサーバー内でプログラムを実行した結果が表示される。
@@ -286,7 +286,7 @@ posts:
       元のsecret.htmlはサーバーに残ったままなので、削除しておく。
   - title: |
       ⑨セキュリティを強化する（secret編②）
-    tag: １学期後半, 秘密のページ
+    tag: ["１学期後半", "秘密のページ"]
     code_title: secret.php
     body: |-
       元々あったsecretの内容の真上に追加で記述する。
@@ -309,7 +309,7 @@ posts:
       /* 以下元々あったsecretの内容 */ `` 
   - title: |
       ⑩セキュリティを強化する（secret編③）
-    tag: １学期後半, 秘密のページ
+    tag: ["１学期後半", "秘密のページ"]
     code_title: secret.php
     body: >+
       内に記述していく。
@@ -352,7 +352,7 @@ posts:
 
   - title: |
       【目標】index.htmlとsecret.phpを自分専用に作ろう
-    tag: １学期後半
+    tag: ["１学期後半"]
     body: |-
       ただ書き写しただけでは身についたとは言えない！
       自分なりに文字列、数値をいじって自分だけの個人サイトを作ろう。

@@ -22,16 +22,23 @@ content:
           - name: tag
             label: "タグ"
             type: select
+            list: true
             options:
               values:
                 - "１学期前半"
-            default: "１学期前半"
-          - name: code_title
-            label: "コードファイル名 (任意)"
-            type: string
+            default: ["１学期前半"]
+          - name: image
+            label: "画像"
+            type: image
           - name: body
             label: "本文"
-            type: rich-text
+            type: text
+          - name: code_title
+            label: "コードファイル名"
+            type: string
+          - name: code
+            label: "コード"
+            type: code
 
   - name: personal_site
     label: "②個人サイト制作編"
@@ -53,21 +60,24 @@ content:
           - name: tag
             label: "タグ"
             type: select
+            list: true
             options:
               values:
                 - "１学期後半"
-                - "１学期後半, 秘密のページ"
-            default: "１学期後半"
-          - name: code_title
-            label: "コードファイル名 (任意)"
-            type: string
+                - "秘密のページ"
+            default: ["１学期後半"]
+          - name: image
+            label: "画像"
+            type: image
           - name: body
             label: "本文"
-            type: rich-text
-
-
-
-
+            type: text
+          - name: code_title
+            label: "コードファイル名"
+            type: string
+          - name: code
+            label: "コード"
+            type: code
 
   - name: top_links
     label: "トップページリンク集"
@@ -90,4 +100,5 @@ content:
             label: "URL"
             type: string
             required: true
+
 
