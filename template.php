@@ -511,7 +511,10 @@
                         <header class="post-header">
                             <h3><?php echo htmlspecialchars($p['title'], ENT_QUOTES, 'UTF-8'); ?></h3>
                             <?php if (!empty($p['tag'])): ?>
-                                <?php foreach (array_filter(array_map('trim', explode(',', (string)$p['tag']))) as $t): ?>
+                                <?php 
+                                $tags = is_array($p['tag']) ? $p['tag'] : array_filter(array_map('trim', explode(',', (string)$p['tag'])));
+                                foreach ($tags as $t): 
+                                ?>
                                     <span style="display: inline-block; background: var(--pico-primary-background); color: var(--pico-primary-inverse); padding: 0.2rem 0.5rem; border-radius: 10px; font-size: 0.8rem; margin-right: 0.2rem;">
                                         #<?php echo htmlspecialchars($t, ENT_QUOTES, 'UTF-8'); ?>
                                     </span>
