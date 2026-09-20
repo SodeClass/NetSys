@@ -10,7 +10,7 @@ posts:
   - title: ②フォントを変える
     tag:
       - １学期後半
-    body: |+
+    body: |
       事前に、サーバーパネル → ホームページ → Webフォント設定 からWebフォント設定を追加する。
 
       その後、画像の様に記述。
@@ -19,10 +19,7 @@ posts:
 
       指定用の名前は以下のページの下部を参照。
       [https://www.xserver.ne.jp/manual/man_server_webfont_html.php](https://www.xserver.ne.jp/manual/man_server_webfont_html.php)
-
-
-
-
+    code_title: index.html
     code_lang: html
     code: >
       <!DOCTYPE html>
@@ -30,253 +27,156 @@ posts:
       <html lang="ja" data-theme="light">
 
       <head>
+          <meta charset="UTF-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1">
+          <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+          <script type="text/javascript" src="//webfonts.xserver.jp/js/xserver.js"></script>
+          <title>タブに表示されるタイトル</title>
+          <style>
 
-      <meta charset="UTF-8">
-
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-
-      <link rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
-
-      <script type="text/javascript"
-      src="//webfonts.xserver.jp/js/xserver.js"></script>
-
-      <title>タブに表示されるタイトル</title>
-
-      <style>
-
-      :root {
-
-      --pico-font-family: "Take Bold", sans-serif; /*
-      pico.cssはフォントが決められているので、rootから指定 */
-
-      }
-
-
-      ```
+              :root {
+                  --pico-font-family: "Take Bold", sans-serif; /* pico.cssはフォントが決められているので、rootから指定 */
+              }
   - title: ③styleをlitlinkっぽく
     tag:
       - １学期後半
-    body: |+
+    body: |-
       画像のように書き換えよう
       色は自分の好きなように
 
       ※背景を画像にする場合はコメントアウトされた方を使おう
       ※pico.cssの仕様で最後が本文（p）だと下の余白が多くなるのを止めてます
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    code_title: index.html
     code_lang: html
-    code: |
-      <style>
-      :root {
-      --pico-font-family: "Take Bold", sans-serif; /*
-      pico.cssはフォントが決められているので、rootから指定 */
-      }
-      body {
-      min-height: 100vh; /* 最小の高さを画面全体にする */
-      padding-top: 3rem; /* 全体に余白を入れる */
-      background-color: cornsilk; /* 背景色を変える */
-      /* background-image: url("images/bg.jpg"); 背景画像を設定 */
-      text-align: center; /* 文字を中央揃えにする */
-      }
-      /* アイコン画像のスタイル */
-      .icon {
-      width: 6rem;
-      height: 6rem;
-      background-color: white; /* アイコンの背景色を変える（透過画像のみ） */
-      border-radius: 50%; /* アイコンを丸くする */
-      }
-      h1 {
-      padding: 1rem; /* ユーザーネームの周りに余白を入れる */
-      font-size: 1.2rem; /* ユーザーネームのフォントサイズを指定する */
-      }
-      article {
-      max-width: 500px; /* 最大幅を指定して広げる */
-      margin: 0 auto 1rem; /* 枠を中央に配置しつつ、下部に余白を入れる */
-      border-radius: 0.5rem; /* 枠の角を丸くする */
-      font-size: 1rem; /* フォントサイズを指定する */
-      }
-      /* article内の最後のp要素の下余白をなくす */
-      article p:last-child {
-      margin-bottom: 0;
-      }
-      </style>
+    code: >2-
+          <style>
 
-      ```
+              :root {
+                  --pico-font-family: "Take Bold", sans-serif; /* pico.cssはフォントが決められているので、rootから指定 */
+              }
+              
+              body {
+                  min-height: 100vh; /* 最小の高さを画面全体にする */
+                  padding-top: 3rem; /* 全体に余白を入れる */
+                  background-color: cornsilk; /* 背景色を変える */
+                  /* background-image: url("images/bg.jpg"); 背景画像を設定 */
+                  text-align: center; /* 文字を中央揃えにする */
+              } 
+
+              /* アイコン画像のスタイル */
+              .icon { 
+                  width: 6rem; 
+                  height: 6rem; 
+                  background-color: white; /* アイコンの背景色を変える（透過画像のみ） */
+                  border-radius: 50%; /* アイコンを丸くする */
+              }
+
+              h1 {
+                  padding: 1rem; /* ユーザーネームの周りに余白を入れる */
+                  font-size: 1.2rem; /* ユーザーネームのフォントサイズを指定する */
+              }
+
+              article {
+                  max-width: 500px; /* 最大幅を指定して広げる */
+                  margin: 0 auto 1rem; /* 枠を中央に配置しつつ、下部に余白を入れる */
+                  border-radius: 0.5rem; /* 枠の角を丸くする */
+                  font-size: 1rem; /* フォントサイズを指定する */
+              }
+
+              /* article内の最後のp要素の下余白をなくす */
+              article p:last-child {
+                  margin-bottom: 0;
+              }
+
+          </style>
   - title: ④Bodyをlitlinkっぽく
     tag:
       - １学期後半
-    body: |+
+    body: |-
       Bodyに自身が過去に作った制作物を入れていく
       個人個人でいい感じに
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    code_title: index.html
     code_lang: html
-    code: |
+    code: >-
       <body>
-      <main class="container">
-      <!-- プロフィール部分 -->
-      <img src="images/profile.png" alt="アイコン" class="icon">
-      <h1>ユーザーネーム</h1>
-      <p>一言コメント</p> <!-- <br>で改行できる -->
-      <article style="background-color:burlywood;"> <!-- 色を変えられる -->
-      <p>制作物</p>
-      </article>
-      <article>
-      <p>画像タイトル</p>
-      <img src="images/gazou.jpg">
-      </article>
-      <article>
-      <p>動画タイトル</p>
-      <video src="images/douga.mp4" controls loop style="max-width:
-      100%"></video>
-      </article>
-      <article>
-      <p><a href="images/slide.pdf" target="_blank">PDFタイトル</a></p>
-      <iframe src="images/slide.pdf#view=Fit" width="100%"
-      height="400rem"></iframe>
-      </article>
-      </main>
-      </body>
-      </html>
+          <main class="container">
+              <!-- プロフィール部分 -->
+              <img src="images/profile.png" alt="アイコン" class="icon">
+              <h1>ユーザーネーム</h1>
+              <p>一言コメント</p> <!-- <br>で改行できる -->
 
-      ```
+              <article style="background-color:burlywood;"> <!-- 色を変えられる -->
+                  <p>制作物</p> 
+              </article>
+
+              <article>
+                  <p>画像タイトル</p>
+                  <img src="images/gazou.jpg">
+              </article>
+
+              <article>
+                  <p>動画タイトル</p>
+                  <video src="images/douga.mp4" controls loop style="max-width: 100%"></video>
+              </article>
+
+              <article>
+                  <p><a href="images/slide.pdf" target="_blank">PDFタイトル</a></p>
+                  <iframe src="images/slide.pdf#view=Fit" width="100%" height="400rem"></iframe>
+              </article>
+          </main>
+      </body>
+
+      </html>
   - title: ⑤秘密のページを作る
     tag:
       - １学期後半
       - 秘密のページ
-    body: |+
+    body: |-
       新しくsecret.htmlファイルを作る。  
       内容はindex.htmlをコピペして、mainだけ書き換える。
 
       途中の〇〇〇〇には他のネットワークシステム授業選択者のURLを、△△△△には氏名を入れる。  
       ４人程度までリンクを載せておこう。
-
-
-
-
-
-
+    code_title: secret.html
     code_lang: html
-    code: |
+    code: |-
       <body>
-      <main class="container">
-      <article style="background-color: burlywood;">  <!--背景色はお好みで-->
-      <p > リンク集 </p>
-      </article>
-      <article>
-      <a href="https://〇〇〇〇.xsrv.jp/"> △△△△ </a>
-      </article>
-      </main>
+          <main class="container">
+
+              <article style="background-color: burlywood;">  <!--背景色はお好みで-->
+                  <p > リンク集 </p>
+              </article>
+
+              <article>
+                  <a href="https://〇〇〇〇.xsrv.jp/"> △△△△ 
+              </article>
+
+
+          </main>
       </body>
-      ```
   - title: ⑥秘密のリンクを作る
     tag:
       - １学期後半
       - 秘密のページ
-    body: |+
+    body: |
       index.htmlのmainの下に書き加える。
       パスワードは各自で決める。
       色はサイトの背景色と一致させよう。
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    code_title: index.html
     code_lang: html
-    code: |
-      </main>
-      <a href="secret.html"
-      onclick="const p = prompt('パスワードを入力してください'); if(p !== '自分で決めたパスワード')
-      return false;"
-      style="color: 自分のサイトの背景色;">
-      隠し部屋
-      </a>
-      </body>
-      </html>
+    code: >2-
+          </main>
 
-      ```
+          <a href="secret.html" 
+              onclick="const p = prompt('パスワードを入力してください'); if(p !== '自分で決めたパスワード') return false;" 
+              style="color: 自分のサイトの背景色;">
+              隠し部屋
+          </a>
+
+          
+      </body>
+
+      </html>
   - title: |
       【課題】相手の隠し部屋に不正アクセスしよう
     tag:
@@ -296,11 +196,12 @@ posts:
       パスワードを聞くのはsecret.htmlを開いた後にする。
 
 
+    code_title: index.html
     code_lang: html
-    code: |
-      <a href="secret.php" style="color: cornsilk;">
-      隠し部屋
-      </a>
+    code: |2-
+          <a href="secret.php" style="color: cornsilk;">
+              隠し部屋
+          </a>
   - title: |
       ⑧セキュリティを強化する（secret編①）
     tag:
@@ -321,66 +222,93 @@ posts:
       - 秘密のページ
     body: |-
       元々あったsecretの内容の真上に追加で記述する。
-      からまでは他のところからコピペして要らないところを消そう。
+      <!DOCTYPE html>から</html>までは他のところからコピペして要らないところを消そう。
+
+      ~~~以下ざっくりとした説明~~~
+      <?php >で囲んだ部分（if文の始めと終わりの二か所）はプログラムとして認識され、ページのソース表示では表示されない。
+      囲まれていないところはただのHTML扱い。
+    code_title: secret.php
+    code_lang: php
+    code: >-
+      <?php
+
+      // === パスワード設定 ===
+
+      // パスワードは英数字または記号にしてください（変換できないので）
+
+      $password = 'zibun-de-kimetene';
 
 
+      // === パスワードの判定 ===
 
+      // パスワードが入力されていない、または入力されたパスワードが間違っている場合の処理
 
+      if (!isset($_POST['password']) || $_POST['password'] !== $password) {
+          ?>
+          <!DOCTYPE html>
+          <html lang="ja" data-theme="light">
+          <head>
+              <meta charset="UTF-8">
+              <meta name="viewport" content="width=device-width, initial-scale=1">
+              <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+              <title>パスワード入力</title>
+              <style>
+                  :root {
+                      --pico-font-family: "Take Bold", sans-serif;
+                  }
+                  body { 
+                      min-height: 100vh;
+                      padding-top: 3rem; 
+                      background-color: cornsilk; 
+                      text-align: center; 
+                  }
+                  article { 
+                      max-width: 500px; 
+                      margin: 0 auto; 
+                      border-radius: 0.5rem;
+                  }
+              </style>
+          </head>
+          <body>
+              <main class="container">
+      　　
 
+      　　　　<!-- この場所にこのあと記述します -->
 
+              </main>
+          </body>
+          </html>
+          <?php
+          // ここで処理を終了し、パスワードが合っていない限り下にある本来のページ(HTML)を表示させない
+          exit;
+      }
 
-      &nbsp;
+      ?>
 
-      　　 　　　　
-
-      /* 以下元々あったsecretの内容 */ `` 
-    code_lang: html
+      /* 以下元々あったsecretの内容 */
   - title: |
       ⑩セキュリティを強化する（secret編③）
     tag:
       - １学期後半
       - 秘密のページ
-    body: |+
-      内に記述していく。
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    body: <body>内に記述していく。
+    code_title: secret.php
     code_lang: php
-    code: |
-      <body>
-      <main class="container">
-      <article>
-      <form method="post" action="secret.php">    <!--
-      POST方式でデータを隠して送り、自分自身に送信するフォーム -->
-      <label for="password">パスワードを入力してください:</label>     <!-- 入力欄の見出し（説明文） -->
-      <input type="password" name="password" id="password" required>   <!--
-      入力枠。文字を隠し、PHPに名前を渡し、空送信を防ぐ -->
-      <?php if (isset($_POST['password'])): ?>    <!--
-      もし送信ボタンが押されてデータが存在していたら（送信後だったら） -->
-      <p style="color: red;">パスワードが違います。</p>
-      <?php endif; ?>
-      <button type="submit">送信</button>     <!-- 入力データをまとめて送信するボタン -->
-      </form>
-      </article>
-      </main>
-      </body>
-
-      ```
+    code: >2-
+          <body>
+              <main class="container">
+                  <article> 
+                      <form method="post" action="secret.php">    <!-- POST方式でデータを隠して送り、自分自身に送信するフォーム -->
+                          <label for="password">パスワードを入力してください:</label>     <!-- 入力欄の見出し（説明文） -->
+                          <input type="password" name="password" id="password" required>   <!-- 入力枠。文字を隠し、PHPに名前を渡し、空送信を防ぐ -->
+                          <?php if (isset($_POST['password'])): ?>    <!-- もし送信ボタンが押されてデータが存在していたら（送信後だったら） -->
+                              <p style="color: red;">パスワードが違います。</p>
+                          <?php endif; ?> 
+                          <button type="submit">送信</button>     <!-- 入力データをまとめて送信するボタン -->
+                      </form>
+                  </article>
+              </main>
+          </body>
   - title: |
       【目標】index.htmlとsecret.phpを自分専用に作ろう
     tag:
