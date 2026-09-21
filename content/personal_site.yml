@@ -1,13 +1,37 @@
 posts:
-  - title: ①litlink風にする
+  - title: ①litlink風にしていく
     tag:
       - １学期後半
-    image: images/img_69fb5effba51a0.32732809.png
     body: |-
-      ![①litlink風にする](../images/img_6a13e9fadec7a8.41845468.png)
-
-      こんな感じで
+      index.htmlを書き換えてlitlink風にする。
+      アイコンにしたい画像を同じフォルダ内に入れ、ユーザーネームと一言コメントを自由に決めよう。
+    code_title: index.html
     code_lang: html
+    code: >-
+      <!DOCTYPE html>
+
+      <html lang="ja">
+
+      <head>
+          <meta charset="UTF-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1">
+          <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+          <title>タブに表示されるタイトル</title>
+          <style>
+              body { text-align: center; } /* 文字を中央揃えにする */
+              img { width: 100px; height: 100px;} /* アイコンのサイズを指定 */
+          </style>
+      </head>
+
+      <body>
+          <main class="container">
+              <img src="images/profile.png">
+              <h1>ユーザーネーム</h1>
+              <p>一言コメント</p>
+          </main>
+      </body>
+
+      </html>
   - title: ②フォントを変える
     tag:
       - １学期後半
@@ -16,12 +40,10 @@ posts:
 
       その後、画像の様に記述。
       フォントは以下のリンクに載っているものが使える。
-
-      [https://www.xserver.ne.jp/functions/service_webfont_shotai.php](https://www.xserver.ne.jp/functions/service_webfont_shotai.php)
+      https://www.xserver.ne.jp/functions/service_webfont_shotai.php
 
       指定用の名前は以下のページの下部を参照。
-
-      [https://www.xserver.ne.jp/manual/man_server_webfont_html.php](https://www.xserver.ne.jp/manual/man_server_webfont_html.php)
+      https://www.xserver.ne.jp/manual/man_server_webfont_html.php
     code_title: index.html
     code_lang: html
     code: >
