@@ -745,14 +745,43 @@ Disallow: /</code></pre>
                                             </article>
                                     <article class="post-article" data-tags="[&quot;\uff11\u5b66\u671f\u5f8c\u534a&quot;]" style="">
                         <header class="post-header">
-                            <h3>①litlink風にする</h3>
+                            <h3>①litlink風にしていく</h3>
                                                                                                 <span style="display: inline-block; background: var(--pico-primary-background); color: var(--pico-primary-inverse); padding: 0.2rem 0.5rem; border-radius: 10px; font-size: 0.8rem; margin-right: 0.2rem;">
                                         #１学期後半                                    </span>
                                                                                     </header>
-                                                    <img src="images/img_6a13e9fadec7a8.41845468.png" class="post-image" alt="">
                                                 <div class="post-content" style="margin-bottom: 0; color: var(--pico-color);">
-                            こんな感じで                        </div>
+                            index.htmlを書き換えてlitlink風にする。<br />
+アイコンにしたい画像を同じフォルダ内に入れ、ユーザーネームと一言コメントを自由に決めよう。                        </div>
                         
+                                                    <div class="code-container">
+                                <div class="code-header">
+                                    <div class="code-header-title">
+                                        <span>index.html</span> <!-- VSCodeっぽくファイル名風に表示 -->
+                                    </div>
+                                    <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                                </div>
+                                <!-- Prism.js用に class="language-php" を指定 (自動判別も可能ですが汎用的にhtml/php系としています) -->
+                                <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;ja&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css&quot;&gt;
+    &lt;title&gt;タブに表示されるタイトル&lt;/title&gt;
+    &lt;style&gt;
+        body { text-align: center; } /* 文字を中央揃えにする */
+        img { width: 100px; height: 100px;} /* アイコンのサイズを指定 */
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;main class=&quot;container&quot;&gt;
+        &lt;img src=&quot;images/profile.png&quot;&gt;
+        &lt;h1&gt;ユーザーネーム&lt;/h1&gt;
+        &lt;p&gt;一言コメント&lt;/p&gt;
+    &lt;/main&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                            </div>
                                             </article>
                                     <article class="post-article" data-tags="[&quot;\uff11\u5b66\u671f\u5f8c\u534a&quot;]" style="">
                         <header class="post-header">
