@@ -18,9 +18,8 @@ posts:
   - title: ③VS codeをインストールする
     tag:
       - １学期前半
+    image: images/img_69fb5effba51a0.32732809.png
     body: |
-      ![③VS codeをインストールする](../images/img_69fb5effba51a0.32732809.png)
-
       　
     code_lang: html
   - title: |
@@ -76,9 +75,8 @@ posts:
   - title: ⑦サーバーと同期する
     tag:
       - １学期前半
+    image: images/img_69fb67a4e779b8.34525437.png
     body: |
-      ![⑦サーバーと同期する](../images/img_69fb67a4e779b8.34525437.png)
-
       画像の場所にある My Server をクリックすると、（上手くいけば）エックスサーバーと同期される。
     code_lang: html
   - title: |
@@ -86,10 +84,20 @@ posts:
     tag:
       - １学期前半
     body: |
-      ![⑧初めに表示されるページを作る](../images/img_6a0aa54b6469a5.94611918.png)
-
       「index.html」を画像の感じで書く。文章は好きに変えよう。
     code_lang: html
+    code: |-
+      <!DOCTYPE html>
+      <html lang="ja">
+      <head>
+          <meta charset="utf-8">
+          <title>タブに表示するタイトル</title>
+      </head>
+      <body>
+          <h1>見出し</h1>
+          <p>個人サイトができました！</p>
+      </body>
+      </html>
   - title: |
       【目標①】ブラウザで確認する
     tag:
