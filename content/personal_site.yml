@@ -5,6 +5,7 @@ posts:
     body: |-
       index.htmlを書き換えてlitlink風にする。
       アイコンにしたい画像を同じフォルダ内に入れ、ユーザーネームと一言コメントを自由に決めよう。
+    code_title: index.html
     code_lang: html
     code: >-
       <!DOCTYPE html>
