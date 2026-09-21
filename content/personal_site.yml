@@ -2,11 +2,8 @@ posts:
   - title: ①litlink風にする
     tag:
       - １学期後半
-    image: images/img_69fb5effba51a0.32732809.png
-    body: |-
-      ![①litlink風にする](../images/img_6a13e9fadec7a8.41845468.png)
-
-      こんな感じで
+    image: images/img_6a13e9fadec7a8.41845468.png
+    body: こんな感じで
     code_lang: html
   - title: ②フォントを変える
     tag:
