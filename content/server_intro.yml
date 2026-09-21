@@ -64,7 +64,7 @@ posts:
           "remotePath": "/home/サーバーID/サーバーID.xsrv.jp/public_html",
           "uploadOnSave": true,
           "useTempFile": false,
-          "openSsh": false,
+          "openSsh": true,
           "privateKeyPath": "~/.ssh/exgyoza.key",
           "ignore": [
               ".vscode",
