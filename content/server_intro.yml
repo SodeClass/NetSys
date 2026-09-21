@@ -85,6 +85,7 @@ posts:
       - １学期前半
     body: |
       「index.html」を画像の感じで書く。文章は好きに変えよう。
+    code_title: index.html
     code_lang: html
     code: |-
       <!DOCTYPE html>
@@ -109,8 +110,6 @@ posts:
     tag:
       - １学期前半
     body: |
-      ![【目標②】ページを外部スタイルシート pico css で整える](../images/img_6a0173ef8a8e27.47059834.png)
-
       - 「index.html」を画像のように書き換え、 pico css を使って楽に見た目を整えていこう。
 
       headに追加する３行は以下をコピペしよう。
@@ -119,7 +118,30 @@ posts:
       &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css&quot;&gt;
 
       ※この段階ではさっきと変わらないが、スマホやダークテーマで開いてみると……？
+    code_title: index.html
     code_lang: html
+    code: >-
+      <!DOCTYPE html>
+
+      <html lang="ja">
+
+      <head>
+          <meta charset="UTF-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1">
+          <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+          <title>タブに表示されるタイトル</title>
+      </head>
+
+      <body>
+          <main class="container">
+              <article>
+                  <h1>見出し</h1>
+                  <p>個人サイトができました！</p>
+              </article>
+          </main>
+      </body>
+
+      </html>
   - title: ＋α　クローラー対策をする
     tag:
       - １学期前半
