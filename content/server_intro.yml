@@ -109,13 +109,14 @@ posts:
       【目標②】ページを外部スタイルシート pico css で整える
     tag:
       - １学期前半
-    body: |
+    body: >
       - 「index.html」を画像のように書き換え、 pico css を使って楽に見た目を整えていこう。
 
+
       headに追加する３行は以下をコピペしよう。
-      &lt;meta charset=&quot;UTF-8&quot;&gt;
-      &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
-      &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css&quot;&gt;
+          <meta charset="UTF-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1">
+          <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
 
       ※この段階ではさっきと変わらないが、スマホやダークテーマで開いてみると……？
     code_title: index.html
