@@ -65,7 +65,7 @@ posts:
           "uploadOnSave": true,
           "useTempFile": false,
           "openSsh": true,
-          "privateKeyPath": "~/.ssh/exgyoza.key",
+          "privateKeyPath": "~/.ssh/サーバーID.key",
           "ignore": [
               ".vscode",
               ".git",
