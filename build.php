@@ -110,6 +110,15 @@ if (!empty($data)) {
 $all_tags = array_keys($all_tags_set);
 sort($all_tags);
 $default_tag = '１学期後半';
+
+$settings_file = $content_dir . '/settings.yml';
+if (file_exists($settings_file)) {
+    $settings = Yaml::parseFile($settings_file);
+    if (isset($settings['default_tag']) && $settings['default_tag'] !== '') {
+        $default_tag = $settings['default_tag'];
+    }
+}
+
 if (!in_array($default_tag, $all_tags)) {
     $all_tags[] = $default_tag;
 }

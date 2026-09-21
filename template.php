@@ -617,48 +617,100 @@
         const tagLinks = document.querySelectorAll('.tag-link');
         const articles = document.querySelectorAll('.post-article');
 
-        tagLinks.forEach(link => {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                const selectedTag = this.getAttribute('data-tag');
-
-                // アクティブなタグのスタイリングを更新
-                tagLinks.forEach(l => {
+        function switchTag(selectedTag, updateHistory = true) {
+            let tagFound = false;
+            // アクティブなタグのスタイリングを更新
+            tagLinks.forEach(l => {
+                if (l.getAttribute('data-tag') === selectedTag) {
+                    l.classList.add('active-tag');
+                    l.style.fontWeight = 'bold';
+                    l.style.pointerEvents = 'none';
+                    l.style.color = 'var(--pico-color)';
+                    tagFound = true;
+                } else {
                     l.classList.remove('active-tag');
                     l.style.fontWeight = 'normal';
                     l.style.pointerEvents = 'auto';
                     l.style.color = '';
-                });
-                this.classList.add('active-tag');
-                this.style.fontWeight = 'bold';
-                this.style.pointerEvents = 'none';
-                this.style.color = 'var(--pico-color)';
-
-                // 記事の表示/非表示を切り替え
-                let visibleCount = 0;
-                articles.forEach(article => {
-                    const tagsStr = article.getAttribute('data-tags');
-                    if (tagsStr) {
-                        try {
-                            const tags = JSON.parse(tagsStr);
-                            if (tags.includes(selectedTag)) {
-                                article.style.display = '';
-                                visibleCount++;
-                            } else {
-                                article.style.display = 'none';
-                            }
-                        } catch(err) {
-                            console.error('JSON parse error', err);
-                        }
-                    }
-                });
-
-                // 記事が0件の場合のメッセージ制御
-                const emptyMsg = document.getElementById('empty-message');
-                if (emptyMsg) {
-                    emptyMsg.style.display = visibleCount === 0 ? 'block' : 'none';
                 }
             });
+
+            // 記事の表示/非表示を切り替え
+            let visibleCount = 0;
+            articles.forEach(article => {
+                const tagsStr = article.getAttribute('data-tags');
+                if (tagsStr) {
+                    try {
+                        const tags = JSON.parse(tagsStr);
+                        if (tags.includes(selectedTag)) {
+                            article.style.display = '';
+                            visibleCount++;
+                        } else {
+                            article.style.display = 'none';
+                        }
+                    } catch(err) {
+                        console.error('JSON parse error', err);
+                    }
+                }
+            });
+
+            // 記事が0件の場合のメッセージ制御
+            const emptyMsg = document.getElementById('empty-message');
+            if (emptyMsg) {
+                emptyMsg.style.display = visibleCount === 0 ? 'block' : 'none';
+            }
+
+            // URLの更新
+            if (updateHistory) {
+                const newUrl = new URL(window.location);
+                newUrl.searchParams.set('tag', selectedTag);
+                window.history.pushState({ tag: selectedTag }, '', newUrl);
+            }
+        }
+
+        // 初期表示時の処理
+        const urlParams = new URLSearchParams(window.location.search);
+        let initialTag = urlParams.get('tag');
+        
+        // PHPで出力されたデフォルトタグを取得（DOMから判定）
+        const defaultActiveLink = document.querySelector('.tag-link.active-tag');
+        const defaultTag = defaultActiveLink ? defaultActiveLink.getAttribute('data-tag') : null;
+
+        if (initialTag && initialTag !== defaultTag) {
+            let tagExists = Array.from(tagLinks).some(l => l.getAttribute('data-tag') === initialTag);
+            if (tagExists) {
+                switchTag(initialTag, false);
+            } else {
+                // 存在しないタグの場合はURLのクエリを削除してデフォルト表示を維持
+                const newUrl = new URL(window.location);
+                newUrl.searchParams.delete('tag');
+                window.history.replaceState(null, '', newUrl);
+            }
+        } else if (!initialTag && defaultTag) {
+            // クエリなしの場合はデフォルトタグをURLに反映 (ブラウザリロード等の共有用)
+            const newUrl = new URL(window.location);
+            newUrl.searchParams.set('tag', defaultTag);
+            window.history.replaceState({ tag: defaultTag }, '', newUrl);
+        }
+
+        tagLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const selectedTag = this.getAttribute('data-tag');
+                switchTag(selectedTag, true);
+            });
+        });
+
+        window.addEventListener('popstate', function(e) {
+            if (e.state && e.state.tag) {
+                switchTag(e.state.tag, false);
+            } else {
+                const currentUrlParams = new URLSearchParams(window.location.search);
+                const currentTag = currentUrlParams.get('tag') || defaultTag;
+                if (currentTag) {
+                    switchTag(currentTag, false);
+                }
+            }
         });
     });
     </script>

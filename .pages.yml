@@ -2,6 +2,16 @@ media:
   input: content/images
   output: images
 content:
+  - name: settings
+    label: "サイト設定"
+    type: file
+    path: content/settings.yml
+    fields:
+      - name: default_tag
+        label: "デフォルト表示タグ"
+        type: string
+        required: true
+
   - name: server_intro
     label: "①レンタルサーバ導入編"
     type: file
