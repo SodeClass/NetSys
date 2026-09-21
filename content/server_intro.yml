@@ -155,7 +155,7 @@ posts:
 
       User-agent: *  ← すべてのクローラーに対して
       Disallow: /       ← すべてのファイルの閲覧を許可しない
-    code_title: .robots.txt
+    code_title: robots.txt
     code_lang: html
     code: |-
       User-agent: *
