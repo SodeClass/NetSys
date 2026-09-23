@@ -45,12 +45,7 @@
             box-shadow: 0 4px 6px rgba(0,0,0,0.05); /* 軽い影 */
             margin-bottom: 1.5rem;
             padding: 1.5rem;
-            transition: transform 0.2s, box-shadow 0.2s;
             text-align: left; /* 中身は左揃え */
-        }
-        article:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
         }
         .post-header {
             display: flex;
