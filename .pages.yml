@@ -1,12 +1,6 @@
 media:
-  - name: images
-    label: "画像"
-    input: content/images
-    output: images
-  - name: files
-    label: "ファイル"
-    input: content/files
-    output: files
+  input: content/images
+  output: images
 
 content:
   - name: tags
@@ -97,14 +91,6 @@ content:
             type: code
             options:
               language: html
-          - name: download_path
-            label: "配布ファイル"
-            type: file
-            options:
-              media: files
-          - name: download_name
-            label: "ダウンロードボタン名（ファイル設定時）"
-            type: string
 
   - name: personal_site
     label: "②個人サイト制作編"
@@ -154,14 +140,6 @@ content:
             type: code
             options:
               language: html
-          - name: download_path
-            label: "配布ファイル"
-            type: file
-            options:
-              media: files
-          - name: download_name
-            label: "ダウンロードボタン名（ファイル設定時）"
-            type: string
 
   - name: HTTP_and_SQL
     label: "③HTTPリクエスト&SQL編"
@@ -211,14 +189,6 @@ content:
             type: code
             options:
               language: html
-          - name: download_path
-            label: "配布ファイル"
-            type: file
-            options:
-              media: files
-          - name: download_name
-            label: "ダウンロードボタン名（ファイル設定時）"
-            type: string
 
   - name: top_links
     label: "トップページリンク集"
