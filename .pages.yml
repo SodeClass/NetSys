@@ -26,7 +26,7 @@ content:
         default: 100
       - name: is_visible
         label: "メニューに表示する"
-        type: checkbox
+        type: boolean
         default: true
 
   - name: settings
