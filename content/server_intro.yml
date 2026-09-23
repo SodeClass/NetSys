@@ -73,6 +73,8 @@ posts:
           ]
       }
   - title: ⑦サーバーと同期する
+    tag:
+      - １学期前半
     image: images/img_69fb67a4e779b8.34525437.png
     body: |
       画像の場所にある My Server をクリックすると、（上手くいけば）エックスサーバーと同期される。
@@ -143,21 +145,14 @@ posts:
       </html>
   - title: ＋α　クローラー対策をする
     tag:
-      - １学期前半
+      - 2学期前半
     body: |
-      ![＋α　クローラー対策をする](../images/img_6a0aa3af463036.55216305.png)
+      index.htmlの<head>タグ内に以下を追加
 
-      robots.txt ファイルを作成し、画像のように記述する。
-      こうするとネット上の情報を収集するプログラム（クローラー）にサイトを覗かれないようになり、検索結果に載らなくなる等の効果がある。
-      いわば魔除け。
-
-      User-agent: *  ← すべてのクローラーに対して
-      Disallow: /       ← すべてのファイルの閲覧を許可しない
-    code_title: robots.txt
+      robots.txtは消しておいてください
+    code_title: index.html
     code_lang: html
-    code: |-
-      User-agent: *
-      Disallow: /
+    code: <meta name="robots" content="noindex">
   - title: ＋α　SSLを設定する
     tag:
       - １学期前半
