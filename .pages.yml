@@ -7,11 +7,15 @@ content:
     label: "タグ管理"
     type: collection
     path: content/tags
-    filename: "{primary}.yml"
+    filename: "{slug}.yml"
     format: yaml
     fields:
       - name: name
         label: "タグ名"
+        type: string
+        required: true
+      - name: slug
+        label: "ファイル名（半角英数字）"
         type: string
         required: true
 
