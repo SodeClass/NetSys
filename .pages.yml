@@ -10,9 +10,9 @@ content:
     filename: "{id}.yml"
     format: yaml
     view:
-      primary: name
+      primary: title
     fields:
-      - name: name
+      - name: title
         label: "タグ名"
         type: string
         required: true
