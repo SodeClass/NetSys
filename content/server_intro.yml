@@ -145,7 +145,7 @@ posts:
       </html>
   - title: ＋α　クローラー対策をする
     tag:
-      - 2学期前半
+      - ２学期前半
     body: |
       index.htmlの<head>タグ内に以下を追加
 
