@@ -54,7 +54,7 @@ content:
             options:
               collection: tags
               multiple: true
-              value: "{primary}"
+              value: "{title}"
               label: "{title}"
             default: ["１学期前半"]
           - name: image
@@ -103,7 +103,7 @@ content:
             options:
               collection: tags
               multiple: true
-              value: "{primary}"
+              value: "{title}"
               label: "{title}"
             default: ["１学期後半"]
           - name: image
