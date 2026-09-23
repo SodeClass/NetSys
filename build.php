@@ -20,23 +20,6 @@ foreach ($iterator as $item) {
     if ($item->isFile()) {
         copy($item->getPathname(), $docs_dir . '/images/' . $item->getFilename());
     }
-if (!file_exists($docs_dir . '/files')) {
-    mkdir($docs_dir . '/files', 0777, true);
-}
-
-// content/files をコピー
-if (is_dir($content_dir . '/files')) {
-    $iterator_files = new RecursiveIteratorIterator(
-        new RecursiveDirectoryIterator($content_dir . '/files', RecursiveDirectoryIterator::SKIP_DOTS),
-        RecursiveIteratorIterator::SELF_FIRST
-    );
-    foreach ($iterator_files as $item) {
-        if ($item->isFile()) {
-            copy($item->getPathname(), $docs_dir . '/files/' . $item->getFilename());
-        }
-    }
-}
-
 }
 // 既存の images の一部もコピー (プロフ画像等)
 if (file_exists(__DIR__ . '/images/profile.png')) {
@@ -95,8 +78,6 @@ if (!empty($data)) {
                 'code_title' => $item['code_title'] ?? '',
                 'code_lang' => $item['code_lang'] ?? 'php', // デフォルトはphpにしておく
                 'code' => $item['code'] ?? '',
-                'download_path' => $item['download_path'] ?? '',
-                'download_name' => $item['download_name'] ?? 'ファイルをダウンロード',
             ];
             
             $body_text = $item['body'] ?? '';
