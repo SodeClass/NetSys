@@ -1,6 +1,8 @@
 media:
   input: content/images
   output: images
+
+content:
   - name: tags
     label: "タグ管理"
     type: collection
@@ -11,8 +13,6 @@ media:
         type: string
         required: true
 
-
-content:
   - name: settings
     label: "サイト設定"
     type: file
