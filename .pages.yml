@@ -166,7 +166,7 @@ content:
               multiple: true
               value: "{title}"
               label: "{title}"
-            default: ["１学期後半"]
+            default: ["２学期前半"]
           - name: image
             label: "画像"
             type: image
