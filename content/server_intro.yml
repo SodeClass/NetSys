@@ -73,8 +73,6 @@ posts:
           ]
       }
   - title: ⑦サーバーと同期する
-    tag:
-      - １学期前半
     image: images/img_69fb67a4e779b8.34525437.png
     body: |
       画像の場所にある My Server をクリックすると、（上手くいけば）エックスサーバーと同期される。
