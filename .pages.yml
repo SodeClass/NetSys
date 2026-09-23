@@ -2,10 +2,6 @@ media:
   input: content/images
   output: images
 
-<<<<<<< HEAD
-=======
-
->>>>>>> ccfcc46c7a578ff2e310fad7f75e17de0918c371
 content:
   - name: tags
     label: "タグ管理"
@@ -18,11 +14,7 @@ content:
         label: "タグ名"
         type: string
         required: true
-<<<<<<< HEAD
 
-=======
-        
->>>>>>> ccfcc46c7a578ff2e310fad7f75e17de0918c371
   - name: settings
     label: "サイト設定"
     type: file
@@ -56,8 +48,8 @@ content:
             options:
               collection: tags
               multiple: true
-              value: "{name}"
-              label: "{name}"
+              value: "{primary}"
+              label: "{primary}"
             default: ["１学期前半"]
           - name: image
             label: "画像"
@@ -105,8 +97,8 @@ content:
             options:
               collection: tags
               multiple: true
-              value: "{name}"
-              label: "{name}"
+              value: "{primary}"
+              label: "{primary}"
             default: ["１学期後半"]
           - name: image
             label: "画像"
@@ -152,7 +144,3 @@ content:
             label: "URL"
             type: string
             required: true
-
-
-
-
