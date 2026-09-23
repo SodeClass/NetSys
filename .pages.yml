@@ -7,14 +7,14 @@ content:
     label: "タグ管理"
     type: collection
     path: content/tags
-    filename: "{slug}.yml"
+    filename: "{id}.yml"
     format: yaml
     fields:
       - name: name
         label: "タグ名"
         type: string
         required: true
-      - name: slug
+      - name: id
         label: "ファイル名（半角英数字）"
         type: string
         required: true
@@ -52,8 +52,8 @@ content:
             options:
               collection: tags
               multiple: true
-              value: "{primary}"
-              label: "{primary}"
+              value: "{name}"
+              label: "{name}"
             default: ["１学期前半"]
           - name: image
             label: "画像"
@@ -101,8 +101,8 @@ content:
             options:
               collection: tags
               multiple: true
-              value: "{primary}"
-              label: "{primary}"
+              value: "{name}"
+              label: "{name}"
             default: ["１学期後半"]
           - name: image
             label: "画像"
