@@ -141,6 +141,55 @@ content:
             options:
               language: html
 
+  - name: personal_site
+    label: "③HTTPリクエスト&SQL編"
+    type: file
+    path: content/personal_site.yml
+    fields:
+      - name: posts
+        label: "記事一覧"
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{title}"
+        fields:
+          - name: title
+            label: "タイトル"
+            type: string
+            required: true
+          - name: tag
+            label: "タグ"
+            type: reference
+            options:
+              collection: tags
+              multiple: true
+              value: "{title}"
+              label: "{title}"
+            default: ["１学期後半"]
+          - name: image
+            label: "画像"
+            type: image
+          - name: body
+            label: "本文"
+            type: text
+          - name: code_title
+            label: "コードファイル名"
+            type: string
+          - name: code_lang
+            label: "コードの言語"
+            type: select
+            options:
+              values:
+                - "html"
+                - "php"
+            default: "html"
+          - name: code
+            label: "コード"
+            type: code
+            options:
+              language: html
+
   - name: top_links
     label: "トップページリンク集"
     type: file
