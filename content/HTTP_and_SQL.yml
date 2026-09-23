@@ -1,7 +1,7 @@
 posts:
   - title: ①データベースに触れる
     tag:
-      - １学期後半
+      - ２学期前半
     body: |-
       まずはVScodeで拡張機能 "SQLite3 Editor" をインストール。
       pokedex.dbをダウンロードし、VScodeで開いてみる。
