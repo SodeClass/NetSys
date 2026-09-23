@@ -482,10 +482,10 @@
             <div style="margin-bottom: 0.5rem;" id="tag-menu">
                 表示タグ:
                                                     <a href="javascript:void(0);" 
-                       data-tag="その他"
+                       data-tag="2学期前半"
                        class="tag-link "
                        style="">
-                       その他                    </a> |
+                       2学期前半                    </a> |
                                     <a href="javascript:void(0);" 
                        data-tag="秘密のページ"
                        class="tag-link "
@@ -613,11 +613,11 @@
 </code></pre>
                             </div>
                                             </article>
-                                    <article class="post-article" data-tags="[&quot;\u305d\u306e\u4ed6&quot;]" style="display: none;">
+                                    <article class="post-article" data-tags="[&quot;\uff11\u5b66\u671f\u524d\u534a&quot;]" style="display: none;">
                         <header class="post-header">
                             <h3>⑦サーバーと同期する</h3>
                                                                                                 <span style="display: inline-block; background: var(--pico-primary-background); color: var(--pico-primary-inverse); padding: 0.2rem 0.5rem; border-radius: 10px; font-size: 0.8rem; margin-right: 0.2rem;">
-                                        #その他                                    </span>
+                                        #１学期前半                                    </span>
                                                                                     </header>
                                                     <img src="images/img_69fb67a4e779b8.34525437.png" class="post-image" alt="">
                                                 <div class="post-content" style="margin-bottom: 0; color: var(--pico-color);">
@@ -709,31 +709,26 @@ headに追加する３行は以下をコピペしよう。<br />
 &lt;/html&gt;</code></pre>
                             </div>
                                             </article>
-                                    <article class="post-article" data-tags="[&quot;\uff11\u5b66\u671f\u524d\u534a&quot;]" style="display: none;">
+                                    <article class="post-article" data-tags="[&quot;2\u5b66\u671f\u524d\u534a&quot;]" style="display: none;">
                         <header class="post-header">
                             <h3>＋α　クローラー対策をする</h3>
                                                                                                 <span style="display: inline-block; background: var(--pico-primary-background); color: var(--pico-primary-inverse); padding: 0.2rem 0.5rem; border-radius: 10px; font-size: 0.8rem; margin-right: 0.2rem;">
-                                        #１学期前半                                    </span>
+                                        #2学期前半                                    </span>
                                                                                     </header>
-                                                    <img src="images/img_6a0aa3af463036.55216305.png" class="post-image" alt="">
                                                 <div class="post-content" style="margin-bottom: 0; color: var(--pico-color);">
-                            robots.txt ファイルを作成し、画像のように記述する。<br />
-こうするとネット上の情報を収集するプログラム（クローラー）にサイトを覗かれないようになり、検索結果に載らなくなる等の効果がある。<br />
-いわば魔除け。<br />
+                            index.htmlの&lt;head&gt;タグ内に以下を追加<br />
 <br />
-User-agent: *  ← すべてのクローラーに対して<br />
-Disallow: /       ← すべてのファイルの閲覧を許可しない                        </div>
+robots.txtは消しておいてください                        </div>
                         
                                                     <div class="code-container">
                                 <div class="code-header">
                                     <div class="code-header-title">
-                                        <span>robots.txt</span> <!-- VSCodeっぽくファイル名風に表示 -->
+                                        <span>index.html</span> <!-- VSCodeっぽくファイル名風に表示 -->
                                     </div>
                                     <button class="copy-button" onclick="copyCode(this)">Copy</button>
                                 </div>
                                 <!-- Prism.js用に class="language-php" を指定 (自動判別も可能ですが汎用的にhtml/php系としています) -->
-                                <pre><code class="language-html">User-agent: *
-Disallow: /</code></pre>
+                                <pre><code class="language-html">&lt;meta name=&quot;robots&quot; content=&quot;noindex&quot;&gt;</code></pre>
                             </div>
                                             </article>
                                     <article class="post-article" data-tags="[&quot;\uff11\u5b66\u671f\u524d\u534a&quot;]" style="display: none;">
