@@ -7,6 +7,8 @@ content:
     label: "タグ管理"
     type: collection
     path: content/tags
+    filename: "{primary}.yml"
+    format: yaml
     fields:
       - name: name
         label: "タグ名"
