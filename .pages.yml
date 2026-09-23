@@ -9,6 +9,8 @@ content:
     path: content/tags
     filename: "{id}.yml"
     format: yaml
+    view:
+      primary: name
     fields:
       - name: name
         label: "タグ名"
@@ -53,7 +55,7 @@ content:
               collection: tags
               multiple: true
               value: "{primary}"
-              label: "{name}"
+              label: "{primary}"
             default: ["１学期前半"]
           - name: image
             label: "画像"
@@ -102,7 +104,7 @@ content:
               collection: tags
               multiple: true
               value: "{primary}"
-              label: "{name}"
+              label: "{primary}"
             default: ["１学期後半"]
           - name: image
             label: "画像"
