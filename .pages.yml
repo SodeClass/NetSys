@@ -20,6 +20,14 @@ content:
         label: "ファイル名（半角英数字）"
         type: string
         required: true
+      - name: sort_order
+        label: "並び順（数字が小さいほど先頭）"
+        type: number
+        default: 100
+      - name: is_visible
+        label: "メニューに表示する"
+        type: checkbox
+        default: true
 
   - name: settings
     label: "サイト設定"

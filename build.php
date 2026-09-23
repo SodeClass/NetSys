@@ -108,7 +108,7 @@ if (!empty($data)) {
     }
 
 $all_tags = array_keys($all_tags_set);
-sort($all_tags);
+
 $default_tag = '１学期後半';
 
 $settings_file = $content_dir . '/settings.yml';
@@ -122,6 +122,37 @@ if (file_exists($settings_file)) {
 if (!in_array($default_tag, $all_tags)) {
     $all_tags[] = $default_tag;
 }
+
+$tag_orders = [];
+$tag_visible = [];
+$tags_dir = $content_dir . '/tags';
+if (is_dir($tags_dir)) {
+    $tag_files = glob($tags_dir . '/*.yml');
+    foreach ($tag_files as $file) {
+        $tag_data = Yaml::parseFile($file);
+        if (isset($tag_data['title'])) {
+            $tag_orders[$tag_data['title']] = isset($tag_data['sort_order']) ? (int)$tag_data['sort_order'] : 100;
+            // 未設定または true の場合は表示
+            $tag_visible[$tag_data['title']] = isset($tag_data['is_visible']) ? (bool)$tag_data['is_visible'] : true;
+        }
+    }
+}
+
+// 表示が false に設定されているタグを $all_tags から除去する
+$all_tags = array_filter($all_tags, function($t) use ($tag_visible, $default_tag) {
+    if ($t === $default_tag) return true; // デフォルトタグは常に表示
+    return isset($tag_visible[$t]) ? $tag_visible[$t] : true;
+});
+
+usort($all_tags, function($a, $b) use ($tag_orders) {
+    $orderA = $tag_orders[$a] ?? 100;
+    $orderB = $tag_orders[$b] ?? 100;
+    
+    if ($orderA === $orderB) {
+        return strcmp($a, $b);
+    }
+    return $orderA - $orderB;
+});
 
 // タグ内の並び順も data.yml の順（sort_order）にする
 foreach ($posts_by_tag as $tag => &$posts) {
