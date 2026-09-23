@@ -25,7 +25,7 @@ content:
         type: number
         default: 100
       - name: is_visible
-        label: "メニューに表示する"
+        label: "トップページに表示するか"
         type: boolean
         default: true
 
