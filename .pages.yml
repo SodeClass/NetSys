@@ -1,6 +1,17 @@
 media:
   input: content/images
   output: images
+  - name: tags
+    label: "タグ管理"
+    type: collection
+    path: content/tags
+    fields:
+      - name: name
+        label: "タグ名"
+        type: string
+        required: true
+
+
 content:
   - name: settings
     label: "サイト設定"
@@ -31,11 +42,12 @@ content:
             required: true
           - name: tag
             label: "タグ"
-            type: select
-            list: true
+            type: reference
             options:
-              values:
-                - "１学期前半"
+              collection: tags
+              multiple: true
+              value: "{name}"
+              label: "{name}"
             default: ["１学期前半"]
           - name: image
             label: "画像"
@@ -79,12 +91,12 @@ content:
             required: true
           - name: tag
             label: "タグ"
-            type: select
-            list: true
+            type: reference
             options:
-              values:
-                - "１学期後半"
-                - "秘密のページ"
+              collection: tags
+              multiple: true
+              value: "{name}"
+              label: "{name}"
             default: ["１学期後半"]
           - name: image
             label: "画像"
