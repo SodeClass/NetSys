@@ -115,7 +115,12 @@ $settings_file = $content_dir . '/settings.yml';
 if (file_exists($settings_file)) {
     $settings = Yaml::parseFile($settings_file);
     if (isset($settings['default_tag']) && $settings['default_tag'] !== '') {
-        $default_tag = $settings['default_tag'];
+        $dt = $settings['default_tag'];
+        if (is_array($dt) && count($dt) > 0) {
+            $default_tag = (string)$dt[0];
+        } elseif (is_string($dt)) {
+            $default_tag = $dt;
+        }
     }
 }
 

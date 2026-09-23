@@ -36,7 +36,11 @@ content:
     fields:
       - name: default_tag
         label: "デフォルト表示タグ"
-        type: string
+        type: reference
+        options:
+          collection: tags
+          value: "{title}"
+          label: "{title}"
         required: true
 
   - name: server_intro
