@@ -149,7 +149,7 @@ posts:
       SQLインジェクション対策のため、prepare()とbindValue()を間にかませる。
       これで入力データが「単なる文字列」として処理される。
     code_title: serch_pokemon.php
-    code_lang: html
+    code_lang: php
     code: |-
       // 名前をGETメソッドでリクエスト
       $search_name = $_GET['name'] ?? '';   
