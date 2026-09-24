@@ -1238,7 +1238,15 @@ try {
                             今回のメイン。<br />
 さっき書いたコードに続けて書く。<br />
 <br />
-GET                        </div>
+・GETメソッドとは<br />
+HTTPリクエストの１つ。<br />
+サーバーから「情報を取得する」ために用いる。<br />
+リクエストデータ（=クエリ）はURLの末尾にくっつけて送信される。<br />
+<br />
+・SQLとは<br />
+リレーショナルデータベースを扱うための命令文。<br />
+今回の内容はこんな感じ<br />
+SELECT [欲しい列名] FROM [テーブル名] WHERE [条件]                        </div>
                         
                                                     <div class="code-container">
                                 <div class="code-header">
@@ -1248,7 +1256,7 @@ GET                        </div>
                                     <button class="copy-button" onclick="copyCode(this)">Copy</button>
                                 </div>
                                 <!-- Prism.js用に class="language-php" を指定 (自動判別も可能ですが汎用的にhtml/php系としています) -->
-                                <pre><code class="language-php">// 名前をGETリクエスト
+                                <pre><code class="language-php">// 名前をGETメソッドでリクエスト
 $search_name = $_GET[&#039;name&#039;] ?? &#039;&#039;;   
 // 検索結果を入れる配列
 $pokemons = [];
@@ -1256,7 +1264,7 @@ $pokemons = [];
 // 入力がある場合のみ検索を実行
 if ($search_name !== &#039;&#039;) {
     // SQLを実行
-    $stmt = $db-&gt;query(&quot;SELECT * FROM pokemon WHERE name = &#039;&quot; . $search_name . &quot;&#039; ORDER BY id ASC&quot;);
+    $stmt = $db-&gt;query(&quot;SELECT * FROM pokemon WHERE name = &#039;&quot; . $search_name . &quot;&#039; &quot;);
     // 結果をすべて取得
     $pokemons = $stmt-&gt;fetchAll(PDO::FETCH_ASSOC);
 }
