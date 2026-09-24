@@ -1319,7 +1319,19 @@ styleタグは時間があるときに好きに書いてください。         
                                     <button class="copy-button" onclick="copyCode(this)">Copy</button>
                                 </div>
                                 <!-- Prism.js用に class="language-php" を指定 (自動判別も可能ですが汎用的にhtml/php系としています) -->
-                                <pre><code class="language-php">    &lt;!-- 検索結果のリスト表示 --&gt;
+                                <pre><code class="language-php">&lt;body&gt;
+
+    &lt;h1&gt;ポケモン検索&lt;/h1&gt;
+
+    &lt;!-- 検索フォーム --&gt;
+    &lt;div class=&quot;search-box&quot;&gt;
+        &lt;form method=&quot;GET&quot; action=&quot;search_pokemon.php&quot;&gt;
+            &lt;input type=&quot;text&quot; name=&quot;name&quot; value=&quot;&lt;?= $search_name ?&gt;&quot; placeholder=&quot;ここに名前を入力&quot;&gt;
+            &lt;button type=&quot;submit&quot;&gt;検索&lt;/button&gt;
+        &lt;/form&gt;
+    &lt;/div&gt;
+
+    &lt;!-- 検索結果のリスト表示 --&gt;
     &lt;?php if ($search_name === &#039;&#039;): ?&gt;
         &lt;p&gt;ここに検索結果が表示されます&lt;/p&gt;
     &lt;?php elseif (count($pokemons) &gt; 0): ?&gt;
@@ -1343,7 +1355,6 @@ styleタグは時間があるときに好きに書いてください。         
     &lt;?php else: ?&gt;
         &lt;p&gt;ポケモンが見つかりませんでした。&lt;/p&gt;
     &lt;?php endif; ?&gt;
-
 &lt;/body&gt;
 &lt;/html&gt;</code></pre>
                             </div>
