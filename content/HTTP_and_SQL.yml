@@ -34,7 +34,7 @@ posts:
       } catch (PDOException $e) {
           die("データベースの接続に失敗しました: " . $e->getMessage());
       }
-  - title: ポケモン検索ページを作る（検索編）
+  - title: ③ポケモン検索ページを作る（検索編）
     tag:
       - ２学期前半
     body: |-
@@ -72,3 +72,7 @@ posts:
       }
 
       ?>
+  - title: ④ポケモン検索ページを作る（表示編）
+    tag:
+      - ２学期前半
+    code_lang: html
