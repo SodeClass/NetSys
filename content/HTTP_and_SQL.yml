@@ -155,6 +155,13 @@ posts:
 
       $stmt = $db->query("SELECT * FROM pokemon WHERE name LIKE '%" .
       $search_name . "%' ");
+  - title: 【確認】ポケモンを検索してみる２
+    tag:
+      - ２学期前半
+    body: |-
+      部分一致検索が機能しているか確認する。
+      すがたの違い、メガシンカなども結果に出てきます。
+    code_lang: html
   - title: 【確認】作ったページの脆弱性を突こう
     tag:
       - ２学期前半
@@ -245,10 +252,3 @@ posts:
       </body>
 
       </html>
-  - title: 【確認】ポケモンを検索してみる２
-    tag:
-      - ２学期前半
-    body: |-
-      部分一致検索が機能しているか確認する。
-      すがたの違い、メガシンカなども結果に出てきます。
-    code_lang: html
