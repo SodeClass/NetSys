@@ -99,7 +99,19 @@ posts:
       何を説明すればいいかわからないので、質問があったらどんどん聞いてください。
     code_title: search_pokemon.php
     code_lang: php
-    code: |2-
+    code: >-
+      <body>
+
+          <h1>ポケモン検索</h1>
+
+          <!-- 検索フォーム -->
+          <div class="search-box">
+              <form method="GET" action="search_pokemon.php">
+                  <input type="text" name="name" value="<?= $search_name ?>" placeholder="ここに名前を入力">
+                  <button type="submit">検索</button>
+              </form>
+          </div>
+
           <!-- 検索結果のリスト表示 -->
           <?php if ($search_name === ''): ?>
               <p>ここに検索結果が表示されます</p>
@@ -126,6 +138,7 @@ posts:
           <?php endif; ?>
 
       </body>
+
       </html>
   - title: 【確認】ポケモンを検索してみる
     tag:
