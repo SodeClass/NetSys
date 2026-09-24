@@ -72,7 +72,58 @@ posts:
       }
 
       ?>
-  - title: ④ポケモン検索ページを作る（表示編）
+  - title: ④ポケモン検索ページを作る（表示編１）
     tag:
       - ２学期前半
-    code_lang: html
+    body: |-
+      HTMLの中身を書く。まずはheadタグまで。
+      styleタグは時間があるときに好きに書いてください。
+    code_title: serch_pokemon.php
+    code_lang: php
+    code: |-
+      <!DOCTYPE html>
+      <html lang="ja">
+      <head>
+          <meta charset="UTF-8">
+          <meta name="robots" content="noindex">
+          <meta name="viewport" content="width=device-width, initial-scale=1">
+          <title>ポケモン検索</title>
+          <style>
+          </style>
+      </head>
+  - title: ④ポケモン検索ページを作る（表示編２）
+    tag:
+      - ２学期前半
+    body: |-
+      bodyタグを書く。
+      何を説明すればいいかわからないので、質問があったらどんどん聞いてください。
+    code_title: serch_pokemon.php
+    code_lang: php
+    code: |2-
+          <!-- 検索結果のリスト表示 -->
+          <?php if ($search_name === ''): ?>
+              <p>ここに検索結果が表示されます</p>
+          <?php elseif (count($pokemons) > 0): ?>
+              <ul>
+                  <?php foreach ($pokemons as $pokemon): ?>
+                      <li>
+                          No.<?= $pokemon['id'] ?> 
+                          <strong><?= $pokemon['name'] ?></strong>
+                          (<?= $pokemon['type1'] ?>
+
+                          <!-- タイプ2がある場合だけスラッシュとタイプ2を表示する -->
+                          <?php if (!empty($pokemon['type2'])): ?>
+                              / <?= $pokemon['type2'] ?>
+                          <?php endif; ?>)
+                          
+                          たかさ: <?= $pokemon['height'] ?>m, 
+                          おもさ: <?= $pokemon['weight'] ?>kg
+                      </li>
+                  <?php endforeach; ?>
+              </ul>
+          <?php else: ?>
+              <p>ポケモンが見つかりませんでした。</p>
+          <?php endif; ?>
+
+      </body>
+      </html>
