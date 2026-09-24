@@ -11,8 +11,8 @@ posts:
   - title: ②ポケモン検索ページを作る（準備編）
     tag:
       - ２学期前半
-    body: serch_pokemon.phpファイルを新たに作り、以下の様に書き始める。
-    code_title: serch_pokemon.php
+    body: search_pokemon.phpファイルを新たに作り、以下の様に書き始める。
+    code_title: search_pokemon.php
     code_lang: php
     code: >-
       <?php
@@ -50,7 +50,7 @@ posts:
       リレーショナルデータベースを扱うための命令文。
       今回の内容はこんな感じ
       SELECT [欲しい列名] FROM [テーブル名] WHERE [条件]
-    code_title: serch_pokemon.php
+    code_title: search_pokemon.php
     code_lang: php
     code: >-
       // 名前をGETメソッドでリクエスト
@@ -78,7 +78,7 @@ posts:
     body: |-
       HTMLの中身を書く。まずはheadタグまで。
       styleタグは時間があるときに好きに書いてください。
-    code_title: serch_pokemon.php
+    code_title: search_pokemon.php
     code_lang: php
     code: |-
       <!DOCTYPE html>
@@ -97,7 +97,7 @@ posts:
     body: |-
       bodyタグを書く。
       何を説明すればいいかわからないので、質問があったらどんどん聞いてください。
-    code_title: serch_pokemon.php
+    code_title: search_pokemon.php
     code_lang: php
     code: |2-
           <!-- 検索結果のリスト表示 -->
@@ -142,7 +142,7 @@ posts:
       条件を書く際にイコールの代わりにLIKEを使い、検索キーワードの両端に%を付ければOK。
 
       検索編で書いたコード１行を少し書き換えるだけ。
-    code_title: serch_pokemon.php
+    code_title: search_pokemon.php
     code_lang: php
     code: >-
       //これを
@@ -183,7 +183,7 @@ posts:
     body: |-
       検索を実行する際にprepare()とbindValue()を間にかませる。
       これで入力データが「単なる文字列」として処理される。
-    code_title: serch_pokemon.php
+    code_title: search_pokemon.php
     code_lang: php
     code: |-
       // 名前をGETメソッドでリクエスト
@@ -252,3 +252,12 @@ posts:
       </body>
 
       </html>
+  - title: 【課題】オリジナルの検索ページを作る
+    tag:
+      - ２学期前半
+    body: |-
+      袖ヶ浦市の飲食店、植物の品種、プロ野球選手など、検索できそうなものを1つ選び、検索ページを作ろう。
+      データベースはCopilotに「○○のdbファイルを作って」と頼めば作ってくれる。
+
+      search_pokemon.phpをコピペしてsearch_○○.phpのように名前を変え、dbファイルに合わせて書き換えよう。
+    code_lang: html
