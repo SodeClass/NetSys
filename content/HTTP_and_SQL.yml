@@ -224,3 +224,11 @@ posts:
       知っているポケモンを検索しよう。
       「ポケットモンスター　スカーレット・バイオレット」まで対応しています。
     code_lang: html
+  - title: ⑥部分一致検索を
+    tag:
+      - ２学期前半
+    body: 先ほどの検索は完全一致だったので、
+    code_title: serch_pokemon.php
+    code_lang: html
+    code: $stmt = $db->query("SELECT * FROM pokemon WHERE name LIKE '%" .
+      $search_name . "%' ");
