@@ -1245,7 +1245,11 @@ try {
                                     <button class="copy-button" onclick="copyCode(this)">Copy</button>
                                 </div>
                                 <!-- Prism.js用に class="language-php" を指定 (自動判別も可能ですが汎用的にhtml/php系としています) -->
-                                <pre><code class="language-html">$search_name = $_GET[&#039;name&#039;] ?? &#039;&#039;;
+                                <pre><code class="language-html">&lt;?php
+
+//ここに準備編の内容
+
+$search_name = $_GET[&#039;name&#039;] ?? &#039;&#039;;
 $pokemons = [];
 
 // 入力がある場合のみ検索を実行
