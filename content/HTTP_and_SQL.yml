@@ -227,12 +227,13 @@ posts:
   - title: ⑥部分一致検索を
     tag:
       - ２学期前半
-    body: |
+    body: |-
       先ほどの検索は完全一致だったので、部分一致検索に変更する。
       条件を書く際にイコールの代わりにLIKEを使い、検索キーワードの両端に%を付ければOK。
+
       検索編で書いたコード１行を少し書き換えるだけ。
     code_title: serch_pokemon.php
-    code_lang: html
+    code_lang: php
     code: >-
       //これを
 
