@@ -1369,12 +1369,12 @@ styleタグは時間があるときに好きに書いてください。         
                                             </article>
                                     <article class="post-article" data-tags="[&quot;\uff12\u5b66\u671f\u524d\u534a&quot;]" style="">
                         <header class="post-header">
-                            <h3>⑤検索のセキュリティを上げよう（検索編のコード）</h3>
+                            <h3>⑤SQLインジェクション対策（検索編のコード）</h3>
                                                                                                 <span style="display: inline-block; background: var(--pico-primary-background); color: var(--pico-primary-inverse); padding: 0.2rem 0.5rem; border-radius: 10px; font-size: 0.8rem; margin-right: 0.2rem;">
                                         #２学期前半                                    </span>
                                                                                     </header>
                                                 <div class="post-content" style="margin-bottom: 0; color: var(--pico-color);">
-                            SQLインジェクション対策のため、prepare()とbindValue()を間にかませる。<br />
+                            検索を実行する際にprepare()とbindValue()を間にかませる。<br />
 これで入力データが「単なる文字列」として処理される。                        </div>
                         
                                                     <div class="code-container">
@@ -1404,6 +1404,63 @@ if ($search_name !== &#039;&#039;) {
     $pokemons = $stmt-&gt;fetchAll(PDO::FETCH_ASSOC);
 }
 ?&gt;</code></pre>
+                            </div>
+                                            </article>
+                                    <article class="post-article" data-tags="[&quot;\uff12\u5b66\u671f\u524d\u534a&quot;]" style="">
+                        <header class="post-header">
+                            <h3>XSS対策（表示編２のコード）</h3>
+                                                                                                <span style="display: inline-block; background: var(--pico-primary-background); color: var(--pico-primary-inverse); padding: 0.2rem 0.5rem; border-radius: 10px; font-size: 0.8rem; margin-right: 0.2rem;">
+                                        #２学期前半                                    </span>
+                                                                                    </header>
+                                                <div class="post-content" style="margin-bottom: 0; color: var(--pico-color);">
+                            htmlspecialchars()で引数を安全な文字に変換する。                        </div>
+                        
+                                                    <div class="code-container">
+                                <div class="code-header">
+                                    <div class="code-header-title">
+                                        <span>serch_pokemon.php</span> <!-- VSCodeっぽくファイル名風に表示 -->
+                                    </div>
+                                    <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                                </div>
+                                <!-- Prism.js用に class="language-php" を指定 (自動判別も可能ですが汎用的にhtml/php系としています) -->
+                                <pre><code class="language-php">&lt;body&gt;
+
+    &lt;h1&gt;ポケモン検索&lt;/h1&gt;
+
+    &lt;!-- 検索フォーム --&gt;
+    &lt;div class=&quot;search-box&quot;&gt;
+        &lt;form method=&quot;GET&quot; action=&quot;search_pokemon.php&quot;&gt;
+            &lt;input type=&quot;text&quot; name=&quot;name&quot; value=&quot;&lt;?= htmlspecialchars($search_name, ENT_QUOTES, &#039;UTF-8&#039;) ?&gt;&quot; placeholder=&quot;ここに名前を入力&quot;&gt;
+            &lt;button type=&quot;submit&quot;&gt;検索&lt;/button&gt;
+        &lt;/form&gt;
+    &lt;/div&gt;
+
+    &lt;!-- 検索結果のリスト表示 --&gt;
+    &lt;?php if ($search_name === &#039;&#039;): ?&gt;
+        &lt;p&gt;ここに検索結果が表示されます&lt;/p&gt;
+    &lt;?php elseif (count($pokemons) &gt; 0): ?&gt;
+        &lt;ul&gt;
+            &lt;?php foreach ($pokemons as $pokemon): ?&gt;
+                &lt;li&gt;
+                    No.&lt;?= htmlspecialchars($pokemon[&#039;id&#039;], ENT_QUOTES, &#039;UTF-8&#039;) ?&gt; 
+                    &lt;strong&gt;&lt;?= htmlspecialchars($pokemon[&#039;name&#039;], ENT_QUOTES, &#039;UTF-8&#039;) ?&gt;&lt;/strong&gt;
+                    (&lt;?= htmlspecialchars($pokemon[&#039;type1&#039;], ENT_QUOTES, &#039;UTF-8&#039;) ?&gt;
+                    
+                    &lt;!-- タイプ2がある場合だけスラッシュとタイプ2を表示する --&gt;
+                    &lt;?php if (!empty($pokemon[&#039;type2&#039;])): ?&gt;
+                        / &lt;?= htmlspecialchars($pokemon[&#039;type2&#039;], ENT_QUOTES, &#039;UTF-8&#039;) ?&gt;
+                    &lt;?php endif; ?&gt;)
+                    
+                    たかさ: &lt;?= htmlspecialchars($pokemon[&#039;height&#039;], ENT_QUOTES, &#039;UTF-8&#039;) ?&gt;m, 
+                    おもさ: &lt;?= htmlspecialchars($pokemon[&#039;weight&#039;], ENT_QUOTES, &#039;UTF-8&#039;) ?&gt;kg
+                &lt;/li&gt;
+            &lt;?php endforeach; ?&gt;
+        &lt;/ul&gt;
+    &lt;?php else: ?&gt;
+        &lt;p&gt;ポケモンが見つかりませんでした。&lt;/p&gt;
+    &lt;?php endif; ?&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
                             </div>
                                             </article>
                                     </section>
