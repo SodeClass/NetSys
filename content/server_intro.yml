@@ -156,9 +156,7 @@ posts:
   - title: ＋α　SSLを設定する
     tag:
       - １学期前半
-    body: |
-      ![＋α　SSLを設定する](../images/img_6a0a9d44d312e7.92729271.png)
-
+    body: |-
       エックスサーバーの サーバーパネル > ドメイン > SSL設定 から、無料独自SSLをONにする。
       こうすると、「保護されていない通信」という警告が出なくなる。
     code_lang: html
