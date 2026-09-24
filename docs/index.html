@@ -1356,14 +1356,15 @@ styleタグは時間があるときに好きに書いてください。         
                                                                                     </header>
                                                 <div class="post-content" style="margin-bottom: 0; color: var(--pico-color);">
                             今作ったページはセキュリティの面で非常にマズい。<br />
-試しに脆弱性を突いてみよう。<br />
+試しに脆弱性を突こう。<br />
 <br />
 ・ＳＱＬインジェクション<br />
 検索欄に「&#039; OR &#039;1&#039;=&#039;1」と入力して検索すると……？<br />
 ※今回はポケモン図鑑なら問題ないが、顧客データだとどうなるだろうか。<br />
 <br />
 ・XSS<br />
-検索欄に「&quot;&gt;&lt;script&gt;alert(&#039;ハッキング成功！&#039;);&lt;/script&gt;」と入力して検索すると……？                        </div>
+検索欄に「&quot;&gt;&lt;script&gt;alert(&quot;ハッキング成功！&quot;);&lt;/script&gt;」と入力して検索すると……？<br />
+※いろいろな文字を表示してみよう。                        </div>
                         
                                             </article>
                                     </section>
