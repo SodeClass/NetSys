@@ -127,6 +127,34 @@ posts:
 
       </body>
       </html>
+  - title: 【確認】ポケモンを検索してみる
+    tag:
+      - ２学期前半
+    body: |-
+      知っているポケモンを検索しよう。
+      「ポケットモンスター　スカーレット・バイオレット」まで対応しています。
+    code_lang: html
+  - title: ⑥部分一致検索を実装する。
+    tag:
+      - ２学期前半
+    body: |-
+      先ほどの検索は完全一致だったので、部分一致検索に変更する。
+      条件を書く際にイコールの代わりにLIKEを使い、検索キーワードの両端に%を付ければOK。
+
+      検索編で書いたコード１行を少し書き換えるだけ。
+    code_title: serch_pokemon.php
+    code_lang: php
+    code: >-
+      //これを
+
+      $stmt = $db->query("SELECT * FROM pokemon WHERE name = '" . $search_name .
+      "' ");
+
+
+      //これにする
+
+      $stmt = $db->query("SELECT * FROM pokemon WHERE name LIKE '%" .
+      $search_name . "%' ");
   - title: 【確認】作ったページの脆弱性を突こう
     tag:
       - ２学期前半
@@ -142,7 +170,7 @@ posts:
       検索欄に「"><script>alert("ハッキング成功！");</script>」と入力して検索すると……？
       ※いろいろな文字を表示してみよう。
     code_lang: html
-  - title: ⑤SQLインジェクション対策（検索編のコード）
+  - title: ⑦SQLインジェクション対策（検索編のコード）
     tag:
       - ２学期前半
     body: |-
@@ -170,7 +198,7 @@ posts:
           $pokemons = $stmt->fetchAll(PDO::FETCH_ASSOC);
       }
       ?>
-  - title: XSS対策（表示編２のコード）
+  - title: ⑧XSS対策（表示編２のコード）
     tag:
       - ２学期前半
     body: htmlspecialchars()で引数を安全な文字に変換する。
@@ -217,31 +245,10 @@ posts:
       </body>
 
       </html>
-  - title: 【確認】ポケモンを検索してみる
+  - title: 【確認】ポケモンを検索してみる２
     tag:
       - ２学期前半
     body: |-
-      知っているポケモンを検索しよう。
-      「ポケットモンスター　スカーレット・バイオレット」まで対応しています。
+      部分一致検索が機能しているか確認する。
+      すがたの違い、メガシンカなども結果に出てきます。
     code_lang: html
-  - title: ⑥部分一致検索を
-    tag:
-      - ２学期前半
-    body: |-
-      先ほどの検索は完全一致だったので、部分一致検索に変更する。
-      条件を書く際にイコールの代わりにLIKEを使い、検索キーワードの両端に%を付ければOK。
-
-      検索編で書いたコード１行を少し書き換えるだけ。
-    code_title: serch_pokemon.php
-    code_lang: php
-    code: >-
-      //これを
-
-      $stmt = $db->query("SELECT * FROM pokemon WHERE name = '" . $search_name .
-      "' ");
-
-
-      //これにする
-
-      $stmt = $db->query("SELECT * FROM pokemon WHERE name LIKE '%" .
-      $search_name . "%' ");
