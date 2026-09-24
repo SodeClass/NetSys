@@ -1303,7 +1303,7 @@ styleタグは時間があるときに好きに書いてください。         
                                             </article>
                                     <article class="post-article" data-tags="[&quot;\uff12\u5b66\u671f\u524d\u534a&quot;]" style="">
                         <header class="post-header">
-                            <h3>④ポケモン検索ページを作る（表示編２）</h3>
+                            <h3>⑤ポケモン検索ページを作る（表示編２）</h3>
                                                                                                 <span style="display: inline-block; background: var(--pico-primary-background); color: var(--pico-primary-inverse); padding: 0.2rem 0.5rem; border-radius: 10px; font-size: 0.8rem; margin-right: 0.2rem;">
                                         #２学期前半                                    </span>
                                                                                     </header>
@@ -1366,6 +1366,45 @@ styleタグは時間があるときに好きに書いてください。         
 検索欄に「&quot;&gt;&lt;script&gt;alert(&quot;ハッキング成功！&quot;);&lt;/script&gt;」と入力して検索すると……？<br />
 ※いろいろな文字を表示してみよう。                        </div>
                         
+                                            </article>
+                                    <article class="post-article" data-tags="[&quot;\uff12\u5b66\u671f\u524d\u534a&quot;]" style="">
+                        <header class="post-header">
+                            <h3>⑤検索のセキュリティを上げよう（検索編のコード）</h3>
+                                                                                                <span style="display: inline-block; background: var(--pico-primary-background); color: var(--pico-primary-inverse); padding: 0.2rem 0.5rem; border-radius: 10px; font-size: 0.8rem; margin-right: 0.2rem;">
+                                        #２学期前半                                    </span>
+                                                                                    </header>
+                                                <div class="post-content" style="margin-bottom: 0; color: var(--pico-color);">
+                            SQLインジェクション対策のため、prepare()とbindValue()を間にかませる。<br />
+これで入力データが「単なる文字列」として処理される。                        </div>
+                        
+                                                    <div class="code-container">
+                                <div class="code-header">
+                                    <div class="code-header-title">
+                                        <span>serch_pokemon.php</span> <!-- VSCodeっぽくファイル名風に表示 -->
+                                    </div>
+                                    <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                                </div>
+                                <!-- Prism.js用に class="language-php" を指定 (自動判別も可能ですが汎用的にhtml/php系としています) -->
+                                <pre><code class="language-php">// 名前をGETメソッドでリクエスト
+$search_name = $_GET[&#039;name&#039;] ?? &#039;&#039;;   
+// 検索結果を入れる配列
+$pokemons = [];
+
+// 入力がある場合のみ検索を実行
+if ($search_name !== &#039;&#039;) {
+    // SQLの準備 (:name は後で変数を安全に入れるためのプレースホルダー)
+    $stmt = $db-&gt;prepare(&quot;SELECT * FROM pokemon WHERE name LIKE :name &quot;);
+    // 変数を入れる前に、前後に % をくっつける（PHP側で文字列結合）
+    $like_search_name = &#039;%&#039; . $search_name . &#039;%&#039;;  
+    // 変数の割り当て (セキュリティ対策)
+    $stmt-&gt;bindValue(&#039;:name&#039;, $like_search_name, PDO::PARAM_STR);
+    // 実行
+    $stmt-&gt;execute();
+    // 結果をすべて取得
+    $pokemons = $stmt-&gt;fetchAll(PDO::FETCH_ASSOC);
+}
+?&gt;</code></pre>
+                            </div>
                                             </article>
                                     </section>
 
