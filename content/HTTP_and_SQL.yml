@@ -227,7 +227,10 @@ posts:
   - title: ⑥部分一致検索を
     tag:
       - ２学期前半
-    body: 先ほどの検索は完全一致だったので、
+    body: |-
+      先ほどの検索は完全一致だったので、部分一致検索に変更する。
+
+      条件を書く際にイコールの代わりにLIKEを使い、検索キーワードの両端に%を付ける。
     code_title: serch_pokemon.php
     code_lang: html
     code: $stmt = $db->query("SELECT * FROM pokemon WHERE name LIKE '%" .
