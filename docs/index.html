@@ -1483,6 +1483,7 @@ if ($search_name !== &#039;&#039;) {
                                                 <div class="post-content" style="margin-bottom: 0; color: var(--pico-color);">
                             先ほどの検索は完全一致だったので、部分一致検索に変更する。<br />
 条件を書く際にイコールの代わりにLIKEを使い、検索キーワードの両端に%を付ければOK。<br />
+<br />
 検索編で書いたコード１行を少し書き換えるだけ。                        </div>
                         
                                                     <div class="code-container">
@@ -1493,7 +1494,7 @@ if ($search_name !== &#039;&#039;) {
                                     <button class="copy-button" onclick="copyCode(this)">Copy</button>
                                 </div>
                                 <!-- Prism.js用に class="language-php" を指定 (自動判別も可能ですが汎用的にhtml/php系としています) -->
-                                <pre><code class="language-html">//これを
+                                <pre><code class="language-php">//これを
 $stmt = $db-&gt;query(&quot;SELECT * FROM pokemon WHERE name = &#039;&quot; . $search_name . &quot;&#039; &quot;);
 
 //これにする
