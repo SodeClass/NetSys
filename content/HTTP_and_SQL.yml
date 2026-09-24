@@ -39,14 +39,8 @@ posts:
       - ２学期前半
     body: |
       今回のメイン。
-    code_lang: html
+    code_lang: php
     code: >-
-      <?php
-
-
-      //ここに準備編の内容
-
-
       $search_name = $_GET['name'] ?? '';
 
       $pokemons = [];
