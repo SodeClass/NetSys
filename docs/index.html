@@ -1191,10 +1191,63 @@ secret.phpは誰からも見られない（はず）なので、リンク集を�
                                                                                     </header>
                                                 <div class="post-content" style="margin-bottom: 0; color: var(--pico-color);">
                             まずはVScodeで拡張機能 &quot;SQLite3 Editor&quot; をインストール。<br />
-下のリンクからpokedex.dbをダウンロードし、VScodeで開いてみる。<br />
+下のリンクからpokedex.dbをダウンロードし、プロジェクトフォルダ内に入れてVScodeで開いてみる。<br />
 <br />
 <a href="https://sodeclass.github.io/NetSys/pokedex.db" target="_blank" rel="noopener noreferrer">https://sodeclass.github.io/NetSys/pokedex.db</a>                        </div>
                         
+                                            </article>
+                                    <article class="post-article" data-tags="[&quot;\uff12\u5b66\u671f\u524d\u534a&quot;]" style="">
+                        <header class="post-header">
+                            <h3>②ポケモン検索ページを作る（準備編）</h3>
+                                                                                                <span style="display: inline-block; background: var(--pico-primary-background); color: var(--pico-primary-inverse); padding: 0.2rem 0.5rem; border-radius: 10px; font-size: 0.8rem; margin-right: 0.2rem;">
+                                        #２学期前半                                    </span>
+                                                                                    </header>
+                                                <div class="post-content" style="margin-bottom: 0; color: var(--pico-color);">
+                            serch_pokemon.phpファイルを新たに作り、以下の様に書き始める。                        </div>
+                        
+                                                    <div class="code-container">
+                                <div class="code-header">
+                                    <div class="code-header-title">
+                                        <span>serch_pokemon.php</span> <!-- VSCodeっぽくファイル名風に表示 -->
+                                    </div>
+                                    <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                                </div>
+                                <!-- Prism.js用に class="language-php" を指定 (自動判別も可能ですが汎用的にhtml/php系としています) -->
+                                <pre><code class="language-php">&lt;?php
+// エラーを表示する設定（開発用）
+ini_set(&#039;display_errors&#039;, 1);
+error_reporting(E_ALL);
+
+// データベース(pokedex.db)に接続
+$db_file = &#039;pokedex.db&#039;;
+try {
+    $db = new PDO(&quot;sqlite:&quot; . __DIR__ . &#039;/&#039; . $db_file);
+    $db-&gt;setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    die(&quot;データベースの接続に失敗しました: &quot; . $e-&gt;getMessage());
+}
+
+$search_name = $_GET[&#039;name&#039;] ?? &#039;&#039;;
+$pokemons = [];
+
+// 入力がある場合のみ検索を実行
+if ($search_name !== &#039;&#039;) {
+    // 【SQLインジェクション未対策】
+    // ユーザー入力をサニタイズ（無害化）せずに、そのままSQL文に文字列結合しています
+    $sql = &quot;SELECT * FROM pokemon WHERE name = &#039;&quot; . $search_name . &quot;&#039; ORDER BY id ASC&quot;;
+    
+    try {
+        $stmt = $db-&gt;query($sql);
+        if ($stmt) {
+            $pokemons = $stmt-&gt;fetchAll(PDO::FETCH_ASSOC);
+        }
+    } catch (PDOException $e) {
+        // エラーをそのまま表示すると攻撃者にデータベース構造のヒントを与えてしまいます
+        echo &quot;SQL Error: &quot; . $e-&gt;getMessage();
+    }
+}
+?&gt;</code></pre>
+                            </div>
                                             </article>
                                     </section>
 
