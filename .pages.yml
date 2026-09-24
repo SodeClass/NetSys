@@ -3,46 +3,6 @@ media:
   output: images
 
 content:
-  - name: tags
-    label: "タグ管理"
-    type: collection
-    path: content/tags
-    filename: "{id}.yml"
-    format: yaml
-    view:
-      primary: title
-    fields:
-      - name: title
-        label: "タグ名"
-        type: string
-        required: true
-      - name: sort_order
-        label: "並び順（数字が小さいほど先頭）"
-        type: number
-        default: 100
-      - name: is_visible
-        label: "トップページに表示するか"
-        type: boolean
-        default: true
-      - name: id
-        label: "ファイル名（半角英数字）"
-        type: string
-        required: true
-
-  - name: settings
-    label: "サイト設定"
-    type: file
-    path: content/settings.yml
-    fields:
-      - name: default_tag
-        label: "デフォルト表示タグ"
-        type: reference
-        options:
-          collection: tags
-          value: "{title}"
-          label: "{title}"
-        required: true
-
   - name: server_intro
     label: "①レンタルサーバ導入編"
     type: file
@@ -211,3 +171,44 @@ content:
             label: "URL"
             type: string
             required: true
+            
+  - name: tags
+    label: "タグ管理"
+    type: collection
+    path: content/tags
+    filename: "{id}.yml"
+    format: yaml
+    view:
+      primary: title
+    fields:
+      - name: title
+        label: "タグ名"
+        type: string
+        required: true
+      - name: sort_order
+        label: "並び順（数字が小さいほど先頭）"
+        type: number
+        default: 100
+      - name: is_visible
+        label: "トップページに表示するか"
+        type: boolean
+        default: true
+      - name: id
+        label: "ファイル名（半角英数字）"
+        type: string
+        required: true
+
+  - name: settings
+    label: "サイト設定"
+    type: file
+    path: content/settings.yml
+    fields:
+      - name: default_tag
+        label: "デフォルト表示タグ"
+        type: reference
+        options:
+          collection: tags
+          value: "{title}"
+          label: "{title}"
+        required: true
+
