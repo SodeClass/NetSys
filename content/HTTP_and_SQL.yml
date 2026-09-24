@@ -41,6 +41,12 @@ posts:
       今回のメイン。
     code_lang: html
     code: >-
+      <?php
+
+
+      //ここに準備編の内容
+
+
       $search_name = $_GET['name'] ?? '';
 
       $pokemons = [];
