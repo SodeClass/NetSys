@@ -37,11 +37,19 @@ posts:
   - title: ポケモン検索ページを作る（検索編）
     tag:
       - ２学期前半
-    body: |
+    body: |-
       今回のメイン。
+      さっき書いたコードに続けて書く。
+
+      GET
+    code_title: serch_pokemon.php
     code_lang: php
     code: >-
-      $search_name = $_GET['name'] ?? '';
+      // 名前をGETリクエスト
+
+      $search_name = $_GET['name'] ?? '';   
+
+      // 検索結果を入れる配列
 
       $pokemons = [];
 
