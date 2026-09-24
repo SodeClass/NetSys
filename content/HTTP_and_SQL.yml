@@ -275,3 +275,8 @@ posts:
 
       search_pokemon.phpをコピペしてsearch_○○.phpのように名前を変え、dbファイルに合わせて書き換えよう。
     code_lang: html
+  - title: 【追加課題】レポート提出
+    tag:
+      - ２学期前半
+    body: なぜSQLインジェクション・XSSが起こるのか、対策の内容はどういったものかをレポートにまとめて提出すること。
+    code_lang: html
