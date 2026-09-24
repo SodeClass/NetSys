@@ -1474,6 +1474,26 @@ if ($search_name !== &#039;&#039;) {
 「ポケットモンスター　スカーレット・バイオレット」まで対応しています。                        </div>
                         
                                             </article>
+                                    <article class="post-article" data-tags="[&quot;\uff12\u5b66\u671f\u524d\u534a&quot;]" style="">
+                        <header class="post-header">
+                            <h3>⑥部分一致検索を</h3>
+                                                                                                <span style="display: inline-block; background: var(--pico-primary-background); color: var(--pico-primary-inverse); padding: 0.2rem 0.5rem; border-radius: 10px; font-size: 0.8rem; margin-right: 0.2rem;">
+                                        #２学期前半                                    </span>
+                                                                                    </header>
+                                                <div class="post-content" style="margin-bottom: 0; color: var(--pico-color);">
+                            先ほどの検索は完全一致だったので、                        </div>
+                        
+                                                    <div class="code-container">
+                                <div class="code-header">
+                                    <div class="code-header-title">
+                                        <span>serch_pokemon.php</span> <!-- VSCodeっぽくファイル名風に表示 -->
+                                    </div>
+                                    <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                                </div>
+                                <!-- Prism.js用に class="language-php" を指定 (自動判別も可能ですが汎用的にhtml/php系としています) -->
+                                <pre><code class="language-html">$stmt = $db-&gt;query(&quot;SELECT * FROM pokemon WHERE name LIKE &#039;%&quot; . $search_name . &quot;%&#039; &quot;);</code></pre>
+                            </div>
+                                            </article>
                                     </section>
 
         <!-- アクセスログの表示（view_logsが有効な場合のみ） -->
