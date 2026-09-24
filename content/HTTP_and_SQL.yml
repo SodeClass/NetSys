@@ -17,11 +17,11 @@ posts:
     code: >-
       <?php
 
-      // エラーを表示する設定（開発用）
+      // エラーを表示する設定
 
-      ini_set('display_errors', 1);
+      ini_set('display_errors', 1);   //エラー表示をオン(1)に
 
-      error_reporting(E_ALL);
+      error_reporting(E_ALL);         //エラーをすべてreportさせる
 
 
       // データベース(pokedex.db)に接続
@@ -29,34 +29,8 @@ posts:
       $db_file = 'pokedex.db';
 
       try {
-          $db = new PDO("sqlite:" . __DIR__ . '/' . $db_file);
-          $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+          $db = new PDO("sqlite:" . __DIR__ . '/' . $db_file);    //データベース操作関数PDOを呼びSQLiteでこのディレクトリの$db_fileを指定
+          $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);   //設定変更して例外発生モードに
       } catch (PDOException $e) {
           die("データベースの接続に失敗しました: " . $e->getMessage());
       }
-
-
-      $search_name = $_GET['name'] ?? '';
-
-      $pokemons = [];
-
-
-      // 入力がある場合のみ検索を実行
-
-      if ($search_name !== '') {
-          // 【SQLインジェクション未対策】
-          // ユーザー入力をサニタイズ（無害化）せずに、そのままSQL文に文字列結合しています
-          $sql = "SELECT * FROM pokemon WHERE name = '" . $search_name . "' ORDER BY id ASC";
-          
-          try {
-              $stmt = $db->query($sql);
-              if ($stmt) {
-                  $pokemons = $stmt->fetchAll(PDO::FETCH_ASSOC);
-              }
-          } catch (PDOException $e) {
-              // エラーをそのまま表示すると攻撃者にデータベース構造のヒントを与えてしまいます
-              echo "SQL Error: " . $e->getMessage();
-          }
-      }
-
-      ?>
