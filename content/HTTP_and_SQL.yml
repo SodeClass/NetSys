@@ -91,7 +91,7 @@ posts:
           <style>
           </style>
       </head>
-  - title: ④ポケモン検索ページを作る（表示編２）
+  - title: ⑤ポケモン検索ページを作る（表示編２）
     tag:
       - ２学期前半
     body: |-
@@ -142,3 +142,31 @@ posts:
       検索欄に「"><script>alert("ハッキング成功！");</script>」と入力して検索すると……？
       ※いろいろな文字を表示してみよう。
     code_lang: html
+  - title: ⑤検索のセキュリティを上げよう（検索編のコード）
+    tag:
+      - ２学期前半
+    body: |-
+      SQLインジェクション対策のため、prepare()とbindValue()を間にかませる。
+      これで入力データが「単なる文字列」として処理される。
+    code_title: serch_pokemon.php
+    code_lang: html
+    code: |-
+      // 名前をGETメソッドでリクエスト
+      $search_name = $_GET['name'] ?? '';   
+      // 検索結果を入れる配列
+      $pokemons = [];
+
+      // 入力がある場合のみ検索を実行
+      if ($search_name !== '') {
+          // SQLの準備 (:name は後で変数を安全に入れるためのプレースホルダー)
+          $stmt = $db->prepare("SELECT * FROM pokemon WHERE name LIKE :name ");
+          // 変数を入れる前に、前後に % をくっつける（PHP側で文字列結合）
+          $like_search_name = '%' . $search_name . '%';  
+          // 変数の割り当て (セキュリティ対策)
+          $stmt->bindValue(':name', $like_search_name, PDO::PARAM_STR);
+          // 実行
+          $stmt->execute();
+          // 結果をすべて取得
+          $pokemons = $stmt->fetchAll(PDO::FETCH_ASSOC);
+      }
+      ?>
