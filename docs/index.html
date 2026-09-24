@@ -1235,17 +1235,22 @@ try {
                                         #２学期前半                                    </span>
                                                                                     </header>
                                                 <div class="post-content" style="margin-bottom: 0; color: var(--pico-color);">
-                            今回のメイン。                        </div>
+                            今回のメイン。<br />
+さっき書いたコードに続けて書く。<br />
+<br />
+GET                        </div>
                         
                                                     <div class="code-container">
                                 <div class="code-header">
                                     <div class="code-header-title">
-                                        <span></span> <!-- VSCodeっぽくファイル名風に表示 -->
+                                        <span>serch_pokemon.php</span> <!-- VSCodeっぽくファイル名風に表示 -->
                                     </div>
                                     <button class="copy-button" onclick="copyCode(this)">Copy</button>
                                 </div>
                                 <!-- Prism.js用に class="language-php" を指定 (自動判別も可能ですが汎用的にhtml/php系としています) -->
-                                <pre><code class="language-php">$search_name = $_GET[&#039;name&#039;] ?? &#039;&#039;;
+                                <pre><code class="language-php">// 名前をGETリクエスト
+$search_name = $_GET[&#039;name&#039;] ?? &#039;&#039;;   
+// 検索結果を入れる配列
 $pokemons = [];
 
 // 入力がある場合のみ検索を実行
