@@ -30,7 +30,29 @@ posts:
 
       try {
           $db = new PDO("sqlite:" . __DIR__ . '/' . $db_file);    //データベース操作関数PDOを呼びSQLiteでこのディレクトリの$db_fileを指定
-          $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);   //設定変更して例外発生モードに
+          $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);   //設定変更して例外発生通知モードに
       } catch (PDOException $e) {
           die("データベースの接続に失敗しました: " . $e->getMessage());
       }
+  - title: ポケモン検索ページを作る（検索編）
+    tag:
+      - ２学期前半
+    body: |
+      今回のメイン。
+    code_lang: html
+    code: >-
+      $search_name = $_GET['name'] ?? '';
+
+      $pokemons = [];
+
+
+      // 入力がある場合のみ検索を実行
+
+      if ($search_name !== '') {
+          // SQLを実行
+          $stmt = $db->query("SELECT * FROM pokemon WHERE name = '" . $search_name . "' ORDER BY id ASC");
+          // 結果をすべて取得
+          $pokemons = $stmt->fetchAll(PDO::FETCH_ASSOC);
+      }
+
+      ?>
