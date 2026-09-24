@@ -1214,39 +1214,18 @@ secret.phpは誰からも見られない（はず）なので、リンク集を�
                                 </div>
                                 <!-- Prism.js用に class="language-php" を指定 (自動判別も可能ですが汎用的にhtml/php系としています) -->
                                 <pre><code class="language-php">&lt;?php
-// エラーを表示する設定（開発用）
-ini_set(&#039;display_errors&#039;, 1);
-error_reporting(E_ALL);
+// エラーを表示する設定
+ini_set(&#039;display_errors&#039;, 1);   //エラー表示をオン(1)に
+error_reporting(E_ALL);         //エラーをすべてreportさせる
 
 // データベース(pokedex.db)に接続
 $db_file = &#039;pokedex.db&#039;;
 try {
-    $db = new PDO(&quot;sqlite:&quot; . __DIR__ . &#039;/&#039; . $db_file);
-    $db-&gt;setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $db = new PDO(&quot;sqlite:&quot; . __DIR__ . &#039;/&#039; . $db_file);    //データベース操作関数PDOを呼びSQLiteでこのディレクトリの$db_fileを指定
+    $db-&gt;setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);   //設定変更して例外発生モードに
 } catch (PDOException $e) {
     die(&quot;データベースの接続に失敗しました: &quot; . $e-&gt;getMessage());
-}
-
-$search_name = $_GET[&#039;name&#039;] ?? &#039;&#039;;
-$pokemons = [];
-
-// 入力がある場合のみ検索を実行
-if ($search_name !== &#039;&#039;) {
-    // 【SQLインジェクション未対策】
-    // ユーザー入力をサニタイズ（無害化）せずに、そのままSQL文に文字列結合しています
-    $sql = &quot;SELECT * FROM pokemon WHERE name = &#039;&quot; . $search_name . &quot;&#039; ORDER BY id ASC&quot;;
-    
-    try {
-        $stmt = $db-&gt;query($sql);
-        if ($stmt) {
-            $pokemons = $stmt-&gt;fetchAll(PDO::FETCH_ASSOC);
-        }
-    } catch (PDOException $e) {
-        // エラーをそのまま表示すると攻撃者にデータベース構造のヒントを与えてしまいます
-        echo &quot;SQL Error: &quot; . $e-&gt;getMessage();
-    }
-}
-?&gt;</code></pre>
+}</code></pre>
                             </div>
                                             </article>
                                     </section>
